@@ -6,12 +6,18 @@
 <div style="background-color: #; color: #ffffff; padding: 10px; border-radius: 5px;">
 <pre>
 //Custom in Key.xm
-token = NSSENCRYPT("tokencuaban");
-tieudealert= NSSENCRYPT("LIEN QUAN MOBILE"); //Tieu de cua thong bao nhap key
-messageinfo = NSSENCRYPT("Alert thong bao cua ban!");
-urlContact = NSSENCRYPT("https:fb.com/pp.7803");//Liên kết MXH
+token = NSSENCRYPT("token");
+tieudealert= NSSENCRYPT("Your alert title"); //Tieu de cua thong bao nhap key
+messageinfo = NSSENCRYPT("YourToastMessage");
+urlContact = NSSENCRYPT("https://www.facebook.com/abc");//Liên kết MXH
 isContact = YES;  //đặt là NO/YES nếu bạn không muốn/muốn hiện nút contact
 </pre>
+
+<p align="center"><b>Example!</b></p> 
+
+![alt text](images/ex.png "")
+
+
 </div>
 <p align="center">
   <font size="6">
