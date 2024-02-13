@@ -6,11 +6,13 @@
 <div style="background-color: #; color: #ffffff; padding: 10px; border-radius: 5px;">
 <pre>
 //Custom in Key.xm
-token = NSSENCRYPT("token");
-tieudealert= NSSENCRYPT("Your alert title"); //Tieu de cua thong bao nhap key
-messageinfo = NSSENCRYPT("YourToastMessage");
+token = NSSENCRYPT("a2fa40c2a0e5a79d17268335480f099cb47319ab");
+tieudealert= NSSENCRYPT("Your alert title"); //Tiêu đề bảng nhập key
+messageinfo = NSSENCRYPT("YourToastMessage");//Thong báo nổi
 urlContact = NSSENCRYPT("https://www.facebook.com/abc");//Liên kết MXH
 isContact = YES;  //đặt là NO/YES nếu bạn không muốn/muốn hiện nút contact
+submit=NSSENCRYPT("Submit");// Nội dung nút Submit
+contact=NSSENCRYPT("Contact");  //Nội dung nút liên hệ
 </pre>
 
 <p align="center"><b>Example!</b></p> 
