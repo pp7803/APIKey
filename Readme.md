@@ -45,7 +45,7 @@ static void didFinishLaunching(CFNotificationCenterRef center, void *observer, C
 //Cho file .mm
 
 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self patchanti];
+        
         PPAPIKey *apikey = [[APIKey alloc] init];
         [apikey setToken:NSSENCRYPT("")]; 
         [apikey setAlertTitle:NSSENCRYPT("PPDZ")];
