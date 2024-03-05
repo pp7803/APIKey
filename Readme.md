@@ -9,14 +9,6 @@
  
     PPAPIKey *apikey = [[PPAPIKey alloc] init];
     [apikey setToken:NSSENCRYPT("")]; 
-    [apikey setAlertTitle:NSSENCRYPT("Title1")];
-    [apikey setAlertTitle2:NSSENCRYPT("Title2")];
-
-    [apikey setShowToast:YES];//If setShowToast=YES, Edit messageinfo, if NO, No Neeed edit
-    [apikey setMessageinfo:NSSENCRYPT("YourToastMessage")];
-
-    [apikey setIsContact:YES];//If setIsContact=YES, Edit urlContact, if NO, No Neeed edit
-    [apikey setURLContact:NSSENCRYPT("https://facebook.com/pp.7803")];
 
     //Content
     [apikey setSubmitContent:NSSENCRYPT("Sumbit")];
