@@ -10,10 +10,7 @@
     PPAPIKey *apikey = [[PPAPIKey alloc] init];
     [apikey setToken:NSSENCRYPT("")]; 
 
-    //Content
-    [apikey setSubmitContent:NSSENCRYPT("Sumbit")];
-    [apikey setContactContent:NSSENCRYPT("Contact")];
-  
+   
     [apikey paid:^{
         //Hàm gọi menu(nếu có)
     }];
