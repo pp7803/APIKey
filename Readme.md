@@ -32,20 +32,20 @@
 <p align="center"><b>Login Success!</b></p> 
 
 <table style="width:100%">
-  <tr>
-    <td align="center">
-      <figure>
-        <img src="images/successen.png" alt="alt text" width="100%">
-        <figcaption>EN</figcaption>
-      </figure>
-    </td>
-    <td align="center">
-      <figure>
-        <img src="images/successvi.png" alt="alt text" width="100%">
-        <figcaption>VI</figcaption>
-      </figure>
-    </td>
-  </tr>
+    <tr>
+        <td align="center">
+            <figure>
+                <img src="images/successen.png" alt="alt text" width="100%" height="300" >
+                <figcaption>EN</figcaption>
+            </figure>
+        </td>
+        <td align="center">
+            <figure>
+                <img src="images/successvi.png" alt="alt text" width="100%" height="300">
+                <figcaption>VI</figcaption>
+            </figure>
+        </td>
+    </tr>
 </table>
 
 <p align="center"><b>Incorrect Key!</b></p>
@@ -54,13 +54,13 @@
   <tr>
     <td align="center">
       <figure>
-        <img src="images/saikeyen.png" alt="alt text" width="100%">
+        <img src="images/saikeyen.png" alt="alt text" width="100%" height="300">
         <figcaption>EN</figcaption>
       </figure>
     </td>
     <td align="center">
       <figure>
-        <img src="images/saikeyvi.png" alt="alt text" width="100%">
+        <img src="images/saikeyvi.png" alt="alt text" width="100%" height="300">
         <figcaption>VI</figcaption>
       </figure>
     </td>
@@ -73,13 +73,13 @@
   <tr>
     <td align="center">
       <figure>
-        <img src="images/khoaen.png" alt="alt text" width="100%">
+        <img src="images/khoaen.png" alt="alt text" width="100%" height="300">
         <figcaption>EN</figcaption>
       </figure>
     </td>
     <td align="center">
       <figure>
-        <img src="images/khoavi.png" alt="alt text" width="100%">
+        <img src="images/khoavi.png" alt="alt text" width="100%" height="300">
         <figcaption>VI</figcaption>
       </figure>
     </td>
@@ -92,13 +92,13 @@
   <tr>
     <td align="center">
       <figure>
-        <img src="images/khoaappen.png" alt="alt text" width="100%">
+        <img src="images/khoaappen.png" alt="alt text" width="100%" height="300">
         <figcaption>EN</figcaption>
       </figure>
     </td>
     <td align="center">
       <figure>
-        <img src="images/khoaappvi.png" alt="alt text" width="100%">
+        <img src="images/khoaappvi.png" alt="alt text" width="100%" height="300">
         <figcaption>VI</figcaption>
       </figure>
     </td>
