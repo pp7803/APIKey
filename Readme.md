@@ -20,10 +20,9 @@
 
 </pre>
 
-<p align="center"><b>Example!</b></p> 
+<p align="center"><b>Auth Alert!</b></p> 
 
-![alt text](images/ex1.png "")
-![alt text](images/ex2.png "")
+![alt text](images/enterkey.png "")
 
 
 </div>
@@ -35,16 +34,76 @@
 
 <p align="center"><b>Login Success!</b></p> 
 
-![alt text](images/success.png "")
+<table style="width:100%">
+  <tr>
+    <td align="center">
+      <figure>
+        <img src="images/successen.png" alt="alt text" width="100%">
+        <figcaption>EN</figcaption>
+      </figure>
+    </td>
+    <td align="center">
+      <figure>
+        <img src="images/successvi.png" alt="alt text" width="100%">
+        <figcaption>VI</figcaption>
+      </figure>
+    </td>
+  </tr>
+</table>
 
 <p align="center"><b>Incorrect Key!</b></p>
 
-![alt text](images/fail1.png "")
+<table style="width:100%">
+  <tr>
+    <td align="center">
+      <figure>
+        <img src="images/saikeyen.png" alt="alt text" width="100%">
+        <figcaption>EN</figcaption>
+      </figure>
+    </td>
+    <td align="center">
+      <figure>
+        <img src="images/saikeyvi.png" alt="alt text" width="100%">
+        <figcaption>VI</figcaption>
+      </figure>
+    </td>
+  </tr>
+</table>
 
 <p align="center"><b>Lock Device!</b></p>
 
-![alt text](images/fail2.png "")
+<table style="width:100%">
+  <tr>
+    <td align="center">
+      <figure>
+        <img src="images/khoaen.png" alt="alt text" width="100%">
+        <figcaption>EN</figcaption>
+      </figure>
+    </td>
+    <td align="center">
+      <figure>
+        <img src="images/khoavi.png" alt="alt text" width="100%">
+        <figcaption>VI</figcaption>
+      </figure>
+    </td>
+  </tr>
+</table>
 
 <p align="center"><b>Lock Package</b></p>
 
-![alt text](images/fail3.png "")
+<table style="width:100%">
+  <tr>
+    <td align="center">
+      <figure>
+        <img src="images/khoaappen.png" alt="alt text" width="100%">
+        <figcaption>EN</figcaption>
+      </figure>
+    </td>
+    <td align="center">
+      <figure>
+        <img src="images/khoaappvi.png" alt="alt text" width="100%">
+        <figcaption>VI</figcaption>
+      </figure>
+    </td>
+  </tr>
+</table>
