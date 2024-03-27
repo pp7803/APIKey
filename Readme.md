@@ -10,7 +10,6 @@
     [apikey setSubmitContent:NSSENCRYPT("OK")];
     [apikey setContactContent:NSSENCRYPT("Liên Hệ")];
     [apikey setEnLanguage:NO]; //Change to YES if you want to use English Version
-    [apikey setRealUDID:YES]; //Change to YES if you want to use Real UDID
     [apikey paid:^{
        //loadmenu()
     }];
