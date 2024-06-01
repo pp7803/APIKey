@@ -1,4 +1,4 @@
-# APIKey - Quản Lí Khách Hàng - v5.0.3
+# APIKey - Quản Lí Khách Hàng - v5.1
 <p align="center">
   <font size="4">
     <b>Cách Dùng</b>
@@ -10,7 +10,7 @@
 ## Cài đặt
 Tải về Folder .zip của APIKey tại mục Release
 ## Server
-Đăng kí tài khoản, tạo package tại [APIKey](https://ppapikey.xyz)
+Đăng kí tài khoản, tạo package tại [APIKey](https://v2.ppapikey.xyz)
 Link Cài đặt cấu hình [APIKey](https://raw.githubusercontent.com/pp7803/APIKey/main/AppConfig/ppapikey.mobileconfig)
 ## Các phương thức của APIKey
 ```Objective-C
