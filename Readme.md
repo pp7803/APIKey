@@ -1,4 +1,4 @@
-# APIKey - Quản Lí Khách Hàng - v5.1
+# APIKey - Quản Lí Khách Hàng - v5.1.1
 <p align="center">
   <font size="4">
     <b>Cách Dùng</b>
@@ -12,37 +12,34 @@ Tải về Folder .zip của APIKey tại mục Release
 ## Server
 Đăng kí tài khoản, tạo package tại [APIKey](https://v2.ppapikey.xyz)
 Link Cài đặt cấu hình [APIKey](https://raw.githubusercontent.com/pp7803/APIKey/main/AppConfig/ppapikey.mobileconfig)
-## Các phương thức của APIKey
+## APIKey Method
 ```Objective-C
-  - (void)loading:(void (^)(void))execute;//thực thi các khối lệnh được bao bọc/excute function
+- (void) loading:(void (^)(void))execute;
+- (void) setPackageToken:(NSString*) token;
+- (void) setOKText:(NSString *) oktext;
+- (void) setContactText:(NSString *) contacttext;
+- (void) setENLanguage:(BOOL) value;
+- (void) exitKey;      //Call this function to Clear key
+- (void) showBundle;   //Call this function to Show App Bundle id
+- (void) copyKey;      //Call this function to Copy key to clipboard
 
-  - (void)setPackageToken:(NSString*) token;//đặt token/set token
-
-  - (void)setOKText:(NSString *) oktext;//chữ của nút OK/Text of OK button
-
-  - (void)setContactText:(NSString *) contacttext;//chữ của nút Contact/Text of Contact button
-
-  - (void)setENLanguage:(BOOL) value;//YES->APIKeyEN, NO->APIKeyVI
-
-  - (void)isOnTapGes:(BOOL) value;//Bật/tắt các cử chỉ(xem ở dưới)/Turn on/off tapGes
-  //chạm 3 lần bằng 4 ngón tay để hiện bundle của ứng dụng hiện tại
-
-  - (NSString*) tb64:(NSString *) text;//giải mã chuỗi base64/decrypt base64 text
-  - (NSString*) getKey;
-  - (NSString*) getTimeKey;
-  - (NSString*) getUDID;
-  - (NSString*) getDeviceName;
-  - (NSString*) getiOSVersion;
+- (NSString*) tb64:(NSString *) text;//decrypt base64
+- (NSString*) getKey;
+- (NSString*) getTimeKey;
+- (NSString*) getUDID;
+- (NSString*) getDeviceName;
+- (NSString*) getiOSVersion;
+- (NSString*) getAppVersion;
+- (NSString*) checkJailbreak;
 
 ```
-## Ví dụ cách thiết lập phương thức (Tweak.mm)
+## Example
 ```Objective-C
     PPAPIKey *APIKey = [[PPAPIKey alloc] init];
-    [APIKey setPackageToken:NSSENCRYPT("Token Package")]; 
+    [APIKey setPackageToken:NSSENCRYPT("")]; 
     [APIKey setOKText:NSSENCRYPT("OK")];
     [APIKey setContactText:NSSENCRYPT("Liên Hệ")];
-    [APIKey isOnTapGes:YES]; //chạm 3 lần bằng 4 ngón tay để hiện bundle của ứng dụng hiện tại
-    [APIKey setENLanguage:NO];//YES thì sẽ là tiếng Anh
+    [APIKey setENLanguage:NO];
     [APIKey loading:^{
         //loadmenu()
     }];
