@@ -49,7 +49,5 @@ Link Cài đặt cấu hình [APIKey](https://raw.githubusercontent.com/pp7803/A
 ```Objective-C
     $(TWEAK_NAME)_LDFLAGS+= libAPIKey.a
 ```
-
 ##Tác Giả
-
 Tạo bởi [Phát Phạm](https://t.me/pdp7803).
