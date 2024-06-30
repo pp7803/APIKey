@@ -1,7 +1,7 @@
 //
 //  APIKey.h
 //
-//  Created by PhatPham on 2024/6/10.
+//  Created by PhatPham on 2024/6/26.
 //
 #import <Foundation/Foundation.h>
 @interface PPAPIKey : NSObject
@@ -22,6 +22,7 @@
 - (NSString*) getDeviceName;
 - (NSString*) getiOSVersion;
 - (NSString*) getAppVersion;
+- (NSString*) getAppBundle;
 - (NSString*) checkJailbreak;
 
 @end
