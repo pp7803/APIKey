@@ -1,4 +1,4 @@
-# APIKey - Quản Lí Khách Hàng - v5.3.5
+# APIKey - Quản Lí Khách Hàng - v5.4
 <p align="center">
   <font size="4">
     <b>Cách Dùng</b>
@@ -19,6 +19,7 @@ Link Cài đặt cấu hình [APIKey](https://raw.githubusercontent.com/pp7803/A
 - (void) setOKText:(NSString *) oktext;
 - (void) setContactText:(NSString *) contacttext;
 - (void) setENLanguage:(BOOL) value;
+- (void) setSCLTheme:(BOOL) value; //Set YES to use SCLAlert Theme
 - (void) exitKey;      //Call this function to Clear key
 - (void) showBundle;   //Call this function to Show App Bundle id
 - (void) copyKey;      //Call this function to Copy key to clipboard
@@ -30,6 +31,7 @@ Link Cài đặt cấu hình [APIKey](https://raw.githubusercontent.com/pp7803/A
 - (NSString*) getDeviceName;
 - (NSString*) getiOSVersion;
 - (NSString*) getAppVersion;
+- (NSString*) getAppBundle;
 - (NSString*) checkJailbreak;
 
 ```
@@ -43,7 +45,6 @@ Link Cài đặt cấu hình [APIKey](https://raw.githubusercontent.com/pp7803/A
     [APIKey loading:^{
         //loadmenu()
     }];
-
 ```
 ## Tại Makefile của dự án Theos
 ```Objective-C
