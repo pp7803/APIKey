@@ -51,5 +51,24 @@
 ```Objective-C
     $(TWEAK_NAME)_LDFLAGS+= libAPIKey.a
 ```
+## Một Số Hình Ảnh Minh Hoạ
+
+
 ## Tác Giả APIKey
 Copyright By [Phát Phạm](https://t.me/pdp7803).
+
+<p align="center">
+  <img src="ex1.PNG" alt="My Logo" width="200"/>
+  <img src="ex2.PNG" alt="My Logo" width="200"/>
+</p>
+<p align="center">
+  <em>Hình 1: Mô tả hình ảnh minh hoạ 1</em>
+  <em>Hình 2: Mô tả hình ảnh minh hoạ 2</em>
+</p>
+<p align="center">
+  <img src="ex3.PNG" alt="My Logo" width="200"/>
+  <img src="ex4.PNG" alt="My Logo" width="200"/>
+</p>
+<p align="center">
+  <img src="ex5.PNG" alt="My Logo" width="200"/>
+</p>
