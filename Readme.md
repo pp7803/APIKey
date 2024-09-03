@@ -1,4 +1,4 @@
-# APIKey - Quản Lí Khách Hàng - v5.4.1
+# APIKey - Quản Lí Khách Hàng - v5.4.2
 <p align="center">
   <font size="4">
     <b>Cách Dùng</b>
@@ -27,7 +27,8 @@
 
 - (NSString*) tb64:(NSString *) text;//decrypt base64
 - (NSString*) getKey;
-- (NSString*) getTimeKey;
+- (NSString*) getKeyExpire;
+- (NSString*) getKeyAmonut;
 - (NSString*) getUDID;
 - (NSString*) getDeviceName;
 - (NSString*) getiOSVersion;
