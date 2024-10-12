@@ -28,7 +28,7 @@
 - (NSString*) tb64:(NSString *) text;//decrypt base64
 - (NSString*) getKey;
 - (NSString*) getKeyExpire;
-- (NSString*) getKeyAmonut;
+- (NSString*) getKeyAmount;
 - (NSString*) getUDID;
 - (NSString*) getDeviceName;
 - (NSString*) getiOSVersion;
