@@ -1,4 +1,4 @@
-# APIKey - Quản Lí Khách Hàng - v5.4.3
+# APIKey - Quản Lí Khách Hàng - v5.4.4
 <p align="center">
   <font size="4">
     <b>Cách Dùng</b>
@@ -11,7 +11,7 @@
 - Cài đặt Theos trên máy Linux/Mac của bạn [Theos Dev](https://theos.dev).
 - Tải về Folder .zip của APIKey tại mục Release và giải nén
 ## Server Key và Tài Khoản
-- Đăng kí tài khoản, tạo package tại [APIKey](https://v3.ppapikey.xyz)
+- Đăng kí tài khoản, tạo package tại [APIKey](https://new.ppapikey.xyz)
 - Link Cài đặt cấu hình Ứng dụng Server [APIKey](https://raw.githubusercontent.com/pp7803/APIKey/main/AppConfig/ppapikey.mobileconfig)
 ## Các Phương Thức
 ```Objective-C
@@ -20,12 +20,10 @@
 - (void) setOKText:(NSString *) oktext;
 - (void) setContactText:(NSString *) contacttext;
 - (void) setENLanguage:(BOOL) value;
-- (void) setSCLTheme:(BOOL) value; //Set YES to use SCLAlert Theme
-- (void) exitKey;      //Call this function to Clear key
-- (void) showBundle;   //Call this function to Show App Bundle id
-- (void) copyKey;      //Call this function to Copy key to clipboard
+- (void) setSCLTheme:(BOOL) value;
+- (void) exitKey;//Call this function to Clear key
+- (void) copyKey;//Call this function to Copy key to clipboard
 
-- (NSString*) tb64:(NSString *) text;//decrypt base64
 - (NSString*) getKey;
 - (NSString*) getKeyExpire;
 - (NSString*) getKeyAmount;
@@ -33,8 +31,9 @@
 - (NSString*) getDeviceName;
 - (NSString*) getiOSVersion;
 - (NSString*) getAppVersion;
+- (NSString*) getAppName;
 - (NSString*) getAppBundle;
-- (NSString*) checkJailbreak;
+- (NSString*) getJailbreakStatus;
 ```
 ## Ví dụ cách thiết lập
 ```Objective-C
