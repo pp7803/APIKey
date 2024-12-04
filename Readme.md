@@ -23,7 +23,6 @@
 - (void) setOKText:(NSString *) oktext;
 - (void) setContactText:(NSString *) contacttext;
 - (void) setENLanguage:(BOOL) value;
-- (void) setTheme:(NSString *) value;
 - (void) exitKey;//Call this function to Clear key
 - (void) copyKey;//Call this function to Copy key to clipboard
 
