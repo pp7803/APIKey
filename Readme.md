@@ -1,4 +1,4 @@
-# APIKey - Quản Lí Khách Hàng - v5.4.5
+# APIKey - Quản Lí Khách Hàng - v5.4.6
 <p align="center">
   <font size="4">
     <b>Cách Dùng</b>
@@ -15,12 +15,15 @@
 - Link Cài đặt cấu hình Ứng dụng Server [APIKey](https://raw.githubusercontent.com/pp7803/APIKey/main/AppConfig/ppapikey.mobileconfig)
 ## Các Phương Thức
 ```Objective-C
+#import <Foundation/Foundation.h>
+@interface PPAPIKey : NSObject
+
 - (void) loading:(void (^)(void))execute;
 - (void) setPackageToken:(NSString*) token;
 - (void) setOKText:(NSString *) oktext;
 - (void) setContactText:(NSString *) contacttext;
 - (void) setENLanguage:(BOOL) value;
-- (void) setSCLTheme:(BOOL) value;
+- (void) setTheme:(NSString *) value;
 - (void) exitKey;//Call this function to Clear key
 - (void) copyKey;//Call this function to Copy key to clipboard
 
@@ -41,8 +44,8 @@
     [APIKey setPackageToken:NSSENCRYPT("")]; 
     [APIKey setOKText:NSSENCRYPT("OK")];
     [APIKey setContactText:NSSENCRYPT("Liên Hệ")];
-    [APIKey setENLanguage:NO];
-    [APIKey setSCLTheme:YES];
+    [APIKey setENLanguage:YES];
+    [APIKey setTheme:@"MBP"];//MBP, SCL, JG - Nếu khác 3 lựa chọn này thì sẽ mặc định là JG
     [APIKey loading:^{
         //loadmenu()
     }];
