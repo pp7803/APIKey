@@ -44,7 +44,6 @@
     [APIKey setOKText:NSSENCRYPT("OK")];
     [APIKey setContactText:NSSENCRYPT("Liên Hệ")];
     [APIKey setENLanguage:YES];
-    [APIKey setTheme:@"MBP"];//MBP, SCL, JG - Nếu khác 3 lựa chọn này thì sẽ mặc định là JG
     [APIKey loading:^{
         //loadmenu()
     }];
