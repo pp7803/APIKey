@@ -25,6 +25,7 @@
 - (void) setENLanguage:(BOOL) value;
 - (void) exitKey;//Call this function to Clear key
 - (void) copyKey;//Call this function to Copy key to clipboard
+- (void) showCSAL:(NSString *)title message:(NSString *)message apiKeyLabel:(NSString *)apiKeyLabel doneTime:(NSInteger)doneTime;
 
 - (NSString*) getKey;
 - (NSString*) getKeyExpire;
