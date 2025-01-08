@@ -23,6 +23,7 @@
 - (void) setOKText:(NSString *) oktext;
 - (void) setContactText:(NSString *) contacttext;
 - (void) setENLanguage:(BOOL) value;
+- (void) setAppVersion:(NSString *) version;
 - (void) exitKey;//Call this function to Clear key
 - (void) copyKey;//Call this function to Copy key to clipboard
 - (void) showCSAL:(NSString *)title message:(NSString *)message apiKeyLabel:(NSString *)apiKeyLabel doneTime:(NSInteger)doneTime;
@@ -44,6 +45,7 @@
     [APIKey setPackageToken:NSSENCRYPT("")]; 
     [APIKey setOKText:NSSENCRYPT("OK")];
     [APIKey setContactText:NSSENCRYPT("Liên Hệ")];
+    [APIKey setAppVersion:NSSENCRYPT("1.0.0")];
     [APIKey setENLanguage:YES];
     [APIKey loading:^{
         //loadmenu()
