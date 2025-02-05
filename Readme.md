@@ -1,83 +1,93 @@
-# APIKey - Customer Management (v5.5.2)
+
+# APIKey - Quản Lý Khách Hàng (v5.5.2)
+
+---
 
 <p align="center">
-  <font size="5">
-    <b>Comprehensive User Guide</b>
-  </font>
+  <font size="5"><b>📋 Hướng Dẫn Sử Dụng APIKey</b></font>
 </p>
 
 ---
 
-## 🚀 **Project Setup**
+### 🚀 **Cài Đặt Dự Án**
 
-### Prerequisites
-- Install **Theos** on your Linux/Mac system: [Theos Development](https://theos.dev).
-- Download the latest `.zip` release of **APIKey** from the [Releases](https://new.ppapikey.xyz) section and extract it.
+1. **Cài Đặt Theos**  
+   - Tải và cài đặt Theos trên hệ điều hành **Linux** hoặc **macOS**: [Theos Dev](https://theos.dev).
 
----
-
-## 🔐 **Server Key & Account Configuration**
-
-1. **Register an Account:** Create your account and set up your package at [APIKey Registration Portal](https://new.ppapikey.xyz).
-2. **Application Configuration:** Install the app configuration for the server via this link:
-   [APIKey Mobile Config](https://raw.githubusercontent.com/pp7803/APIKey/main/AppConfig/ppapikey.mobileconfig).
+2. **Tải APIKey**  
+   - Truy cập mục **Release** của APIKey, tải file `.zip` và giải nén để chuẩn bị cấu hình.
 
 ---
 
-## 📲 **Available Methods**
+### 🔑 **Thiết Lập Server Key & Tài Khoản**
+
+- **Đăng Ký Tài Khoản & Tạo Package:** [APIKey Registration](https://new.ppapikey.xyz)
+- **Cài Đặt Cấu Hình Ứng Dụng Server:**  
+  [Tải File Cấu Hình](https://raw.githubusercontent.com/pp7803/APIKey/main/AppConfig/ppapikey.mobileconfig)
+
+---
+
+### 📚 **Các Phương Thức APIKey**
 
 ```objective-c
 #import <Foundation/Foundation.h>
 
 @interface PPAPIKey : NSObject
 
+// Khởi tạo và xử lý
 - (void)loading:(void (^)(void))execute;
-- (void)setPackageToken:(NSString*)token;
+- (void)setPackageToken:(NSString *)token;
 - (void)setOKText:(NSString *)oktext;
 - (void)setContactText:(NSString *)contacttext;
 - (void)setENLanguage:(BOOL)value;
 - (void)setAppVersion:(NSString *)version;
-- (void)exitKey;       // Clears the current key
-- (void)copyKey;       // Copies the key to the clipboard
-- (void)showCSAL:(NSString *)title message:(NSString *)message apiKeyLabel:(NSString *)apiKeyLabel doneTime:(NSInteger)doneTime;
 
-// Key Information Retrieval
-- (NSString*)getKey;
-- (NSString*)getKeyExpire;
-- (NSString*)getKeyAmount;
-- (NSString*)getUDID;
-- (NSString*)getDeviceName;
-- (NSString*)getiOSVersion;
-- (NSString*)getAppVersion;
-- (NSString*)getAppName;
-- (NSString*)getAppBundle;
-- (NSString*)getJailbreakStatus;
+// Quản lý Key
+- (void)exitKey;    // Xóa Key
+- (void)copyKey;    // Sao chép Key vào Clipboard
+- (void)showCSAL:(NSString *)title 
+          message:(NSString *)message 
+      apiKeyLabel:(NSString *)apiKeyLabel 
+         doneTime:(NSInteger)doneTime;
+
+// Thông tin hệ thống & ứng dụng
+- (NSString *)getKey;
+- (NSString *)getKeyExpire;
+- (NSString *)getKeyAmount;
+- (NSString *)getUDID;
+- (NSString *)getDeviceName;
+- (NSString *)getiOSVersion;
+- (NSString *)getAppVersion;
+- (NSString *)getAppName;
+- (NSString *)getAppBundle;
+- (NSString *)getJailbreakStatus;
+
 @end
 ```
 
 ---
 
-## 📝 **Implementation Example**
+### ⚙️ **Ví Dụ Cài Đặt APIKey**
 
 ```objective-c
 PPAPIKey *APIKey = [[PPAPIKey alloc] init];
 
+// Thiết lập các tham số cấu hình
 [APIKey setPackageToken:NSSENCRYPT("")];
 [APIKey setOKText:NSSENCRYPT("OK")];
 [APIKey setContactText:NSSENCRYPT("Liên Hệ")];
 [APIKey setAppVersion:NSSENCRYPT("1.0.0")];
 [APIKey setENLanguage:YES];
 
+// Tải dữ liệu hoặc xử lý sau khi hoàn tất
 [APIKey loading:^{
-    // Your load menu logic here
+    // loadMenu();
 }];
 ```
 
 ---
 
-## ⚙️ **Project Makefile Configuration (Theos)**
-
-Ensure you link the APIKey library in your Theos tweak:
+### 🛠️ **Cấu Hình Makefile Cho Dự Án Theos**
 
 ```makefile
 $(TWEAK_NAME)_LDFLAGS += libAPIKey.a
@@ -85,9 +95,18 @@ $(TWEAK_NAME)_LDFLAGS += libAPIKey.a
 
 ---
 
-## 👨‍💻 **Author**
+### 👤 **Thông Tin Tác Giả**
 
-Developed with 💙 by [Phát Phạm](https://t.me/ppnohope).
+**APIKey** được phát triển bởi [Phát Phạm](https://t.me/ppnohope).  
+Vui lòng liên hệ trực tiếp để được hỗ trợ và cập nhật các tính năng mới nhất.
 
-> For support and inquiries, feel free to reach out via the provided contact links.
+---
 
+### 📄 **Ghi Chú**
+
+- Đảm bảo hệ điều hành và các công cụ phát triển của bạn luôn được cập nhật để tránh các vấn đề tương thích.
+- Sử dụng các phương thức **encrypt** dữ liệu để bảo mật thông tin quan trọng. 
+
+---
+
+Bản quyền © 2024 bởi [Phát Phạm](https://t.me/ppnohope). All rights reserved.
