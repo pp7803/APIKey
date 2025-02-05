@@ -97,7 +97,7 @@ $(TWEAK_NAME)_LDFLAGS += libAPIKey.a
 
 ### 👤 **Thông Tin Tác Giả**
 
-**APIKey** được phát triển bởi [Phát Phạm](https://t.me/ppnohope).  
+**APIKey** được phát triển bởi [Phát Phạm](https://t.me/pdp7803).  
 Vui lòng liên hệ trực tiếp để được hỗ trợ và cập nhật các tính năng mới nhất.
 
 ---
@@ -109,4 +109,4 @@ Vui lòng liên hệ trực tiếp để được hỗ trợ và cập nhật c�
 
 ---
 
-Bản quyền © 2024 bởi [Phát Phạm](https://t.me/ppnohope). All rights reserved.
+Bản quyền © 2024 bởi [Phát Phạm](https://t.me/pdp7803). All rights reserved.
