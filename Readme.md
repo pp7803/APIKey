@@ -37,8 +37,6 @@
 // Khởi tạo và xử lý
 - (void)loading:(void (^)(void))execute;
 - (void)setPackageToken:(NSString *)token;
-- (void)setOKText:(NSString *)oktext;
-- (void)setContactText:(NSString *)contacttext;
 - (void)setENLanguage:(BOOL)value;
 - (void)setAppVersion:(NSString *)version;
 
