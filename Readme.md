@@ -71,9 +71,8 @@
 PPAPIKey *APIKey = [[PPAPIKey alloc] init];
 
 // Thiết lập các tham số cấu hình
-[APIKey setPackageToken:NSSENCRYPT("")];
-[APIKey setOKText:NSSENCRYPT("OK")];
-[APIKey setContactText:NSSENCRYPT("Liên Hệ")];
+[APIKey setPackageToken:NSSENCRYPT("xxxxx")];
+
 [APIKey setAppVersion:NSSENCRYPT("1.0.0")];
 [APIKey setENLanguage:YES];
 
