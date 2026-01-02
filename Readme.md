@@ -75,7 +75,7 @@
 ### ⚙️ **APIKey Setup Example**
 
 ```objective-c
-PPAPIKey *APIKey = [[PPAPIKey alloc] init];
+PPAPIKey *APIKey = [PPAPIKey sharedInstance];
 
 // Configure parameters
 [APIKey setPackageToken:NSSENCRYPT("xxxxx")];
@@ -175,7 +175,7 @@ Copyright © 2024 by [Phat Pham](https://t.me/pdp7803). All rights reserved.
 ### ⚙️ **Ví Dụ Cài Đặt APIKey**
 
 ```objective-c
-PPAPIKey *APIKey = [[PPAPIKey alloc] init];
+PPAPIKey *APIKey = [PPAPIKey sharedInstance];
 
 // Thiết lập các tham số cấu hình
 [APIKey setPackageToken:NSSENCRYPT("xxxxx")];
