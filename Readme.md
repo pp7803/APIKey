@@ -3,21 +3,21 @@
 ---
 
 <p align="center">
-  <font size="5"><b>📋 APIKey Usage Guide</b></font>
+  <font size="5"><b>APIKey Usage Guide</b></font>
 </p>
 
 ---
 
-## 🌐 Language / Ngôn ngữ
+## Language / Ngôn ngữ
 
-- [🇺🇸 English](#english-version)
-- [🇻🇳 Tiếng Việt](#vietnamese-version)
+- [English](#english-version)
+- [Tiếng Việt](#vietnamese-version)
 
 ---
 
-## 🇺🇸 English Version {#english-version}
+## English Version {#english-version}
 
-### 🚀 **Project Setup**
+### Project Setup
 
 1. **Install Theos**
 
@@ -28,13 +28,13 @@
 
 ---
 
-### 🔑 **Server Key & Account Setup**
+### Server Key & Account Setup
 
 - **Register Account & Create Package:** [APIKey](https://new.ppapikey.xyz)
 
 ---
 
-### 📚 **APIKey Methods**
+### APIKey Methods
 
 ```objective-c
 #import <Foundation/Foundation.h>
@@ -72,7 +72,7 @@
 
 ---
 
-### ⚙️ **APIKey Setup Example**
+### APIKey Setup Example
 
 ```objective-c
 PPAPIKey *APIKey = [PPAPIKey sharedInstance];
@@ -90,7 +90,7 @@ PPAPIKey *APIKey = [PPAPIKey sharedInstance];
 
 ---
 
-### 🛠️ **Makefile Configuration for Theos Project**
+### Makefile Configuration for Theos Project
 
 ```makefile
 $(TWEAK_NAME)_LDFLAGS += libAPIKey.a
@@ -98,14 +98,14 @@ $(TWEAK_NAME)_LDFLAGS += libAPIKey.a
 
 ---
 
-### 👤 **Author Information**
+### Author Information
 
 **APIKey** is developed by [Phat Pham](https://t.me/pdp7803).  
 Please keep updating to the latest API for long-term support.
 
 ---
 
-### 📄 **Notes**
+### Notes
 
 - Ensure your operating system and development tools are always updated to avoid compatibility issues.
 
@@ -115,9 +115,9 @@ Copyright © 2024 by [Phat Pham](https://t.me/pdp7803). All rights reserved.
 
 ---
 
-## 🇻🇳 Vietnamese Version {#vietnamese-version}
+## Vietnamese Version {#vietnamese-version}
 
-### 🚀 **Cài Đặt Dự Án**
+### Cài Đặt Dự Án
 
 1. **Cài Đặt Theos**
 
@@ -128,13 +128,13 @@ Copyright © 2024 by [Phat Pham](https://t.me/pdp7803). All rights reserved.
 
 ---
 
-### 🔑 **Thiết Lập Server Key & Tài Khoản**
+### Thiết Lập Server Key & Tài Khoản
 
 - **Đăng Ký Tài Khoản & Tạo Package:** [APIKey](https://new.ppapikey.xyz)
 
 ---
 
-### 📚 **Các Phương Thức APIKey**
+### Các Phương Thức APIKey
 
 ```objective-c
 #import <Foundation/Foundation.h>
@@ -172,7 +172,7 @@ Copyright © 2024 by [Phat Pham](https://t.me/pdp7803). All rights reserved.
 
 ---
 
-### ⚙️ **Ví Dụ Cài Đặt APIKey**
+### Ví Dụ Cài Đặt APIKey
 
 ```objective-c
 PPAPIKey *APIKey = [PPAPIKey sharedInstance];
@@ -190,7 +190,7 @@ PPAPIKey *APIKey = [PPAPIKey sharedInstance];
 
 ---
 
-### 🛠️ **Cấu Hình Makefile Cho Dự Án Theos**
+### Cấu Hình Makefile Cho Dự Án Theos
 
 ```makefile
 $(TWEAK_NAME)_LDFLAGS += libAPIKey.a
@@ -198,14 +198,14 @@ $(TWEAK_NAME)_LDFLAGS += libAPIKey.a
 
 ---
 
-### 👤 **Thông Tin Tác Giả**
+### Thông Tin Tác Giả
 
 **APIKey** được phát triển bởi [Phát Phạm](https://t.me/pdp7803).  
 Vui lòng liên tục cập nhật API mới nhất để được hỗ trợ lâu dài.
 
 ---
 
-### 📄 **Ghi Chú**
+### Ghi Chú
 
 - Đảm bảo hệ điều hành và các công cụ phát triển của bạn luôn được cập nhật để tránh các vấn đề tương thích.
 
