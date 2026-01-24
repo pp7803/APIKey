@@ -4,7 +4,7 @@
 
 ### Professional License Management & Authentication Framework
 
-[![Version](https://img.shields.io/badge/version-5.7.1-blue.svg)](https://github.com/yourusername/APIKey)
+[![Version](https://img.shields.io/badge/version-5.7.2-blue.svg)](https://github.com/yourusername/APIKey)
 [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)](https://www.apple.com/ios)
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
 [![Theos](https://img.shields.io/badge/built%20with-Theos-orange.svg)](https://theos.dev)
@@ -304,7 +304,7 @@ distribution, or use of this software is strictly prohibited.
 
 ## Changelog
 
-### v5.7.1 (Current)
+### v5.7.2 (Current)
 
 - Enhanced WebSocket support
 - Improved error handling
@@ -602,7 +602,7 @@ phân phối hoặc sử dụng phần mềm này mà không có sự cho phép.
 
 ## Lịch Sử Thay Đổi
 
-### v5.7.1 (Hiện Tại)
+### v5.7.2 (Hiện Tại)
 
 - Cải thiện hỗ trợ WebSocket
 - Xử lý lỗi tốt hơn
