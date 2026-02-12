@@ -4,7 +4,7 @@
 
 ### Professional License Management & Authentication Framework
 
-[![Version](https://img.shields.io/badge/version-5.7.2-blue.svg)](https://github.com/yourusername/APIKey)
+[![Version](https://img.shields.io/badge/version-5.7.3-blue.svg)](https://github.com/yourusername/APIKey)
 [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)](https://www.apple.com/ios)
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
 [![Theos](https://img.shields.io/badge/built%20with-Theos-orange.svg)](https://theos.dev)
