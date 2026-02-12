@@ -304,7 +304,10 @@ distribution, or use of this software is strictly prohibited.
 
 ## Changelog
 
-### v5.7.2 (Current)
+### v5.7.3
+- Added two new themes: ANDROID and NEWYEAR2026
+
+### v5.7.2
 
 - Enhanced WebSocket support
 - Improved error handling
@@ -602,7 +605,10 @@ phân phối hoặc sử dụng phần mềm này mà không có sự cho phép.
 
 ## Lịch Sử Thay Đổi
 
-### v5.7.2 (Hiện Tại)
+### v5.7.3
+- Bổ sung thêm giao diện mới NEWYEAR2026 và ANDROID
+
+### v5.7.2
 
 - Cải thiện hỗ trợ WebSocket
 - Xử lý lỗi tốt hơn
