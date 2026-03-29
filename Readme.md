@@ -4,7 +4,7 @@
 
 ### Professional License Management & Authentication Framework
 
-[![Version](https://img.shields.io/badge/version-5.7.3-blue.svg)](https://github.com/yourusername/APIKey)
+[![Version](https://img.shields.io/badge/version-5.7.4-blue.svg)](https://github.com/yourusername/APIKey)
 [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)](https://www.apple.com/ios)
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
 [![Theos](https://img.shields.io/badge/built%20with-Theos-orange.svg)](https://theos.dev)
@@ -304,7 +304,7 @@ distribution, or use of this software is strictly prohibited.
 
 ## Changelog
 
-### v5.7.3
+### v5.7.4
 - Added two new themes: ANDROID and NEWYEAR2026
 
 ### v5.7.2
@@ -605,7 +605,7 @@ phân phối hoặc sử dụng phần mềm này mà không có sự cho phép.
 
 ## Lịch Sử Thay Đổi
 
-### v5.7.3
+### v5.7.4
 - Bổ sung thêm giao diện mới NEWYEAR2026 và ANDROID
 
 ### v5.7.2
