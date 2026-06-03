@@ -1,10 +1,10 @@
 <div align="center">
 
-# APIKey V6 — Customer Management System
+# APIKey 6.0 — Customer Management System
 
 ### Professional License Management & Authentication Framework
 
-[![Version](https://img.shields.io/badge/version-6.0.0-blue.svg)](https://github.com/pp7803/APIKey)
+[![Version](https://img.shields.io/badge/version-6.0.1-blue.svg)](https://github.com/pp7803/APIKey)
 [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)](https://www.apple.com/ios)
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
 [![Theos](https://img.shields.io/badge/built%20with-Theos-orange.svg)](https://theos.dev)
@@ -436,6 +436,16 @@ Copyright © 2024-2026 Phat Pham (@pdp7803)
 ---
 
 ## Changelog
+
+### v6.0.1
+
+**Version strings:** `PPAPIKey 6.0.1B` (basic) · `PPAPIKey 6.0.1F` (full)
+
+- **CST** — Success alert: left accent bar fills the card’s rounded corners correctly
+- **JG / MBP** — Loading indicator: ring animates around the logo (not the whole circle); MBP logo centered in the ring
+- **SCL** — Custom overlay HUD (no dim-screen flash); dark/light mode; smooth handoff from loading to alert without re-dimming
+- **Minecraft** — Clearer text layout; no full-screen dim or outer black shell; dim applied per pixel tile only; text areas use transparent panels (no black message backgrounds)
+- **Glass** — HUD card centered on screen; loading: spinner left, message right, balanced vertical padding; success/fail: title and body text spaced closer together
 
 ### v6.0.0
 
@@ -871,6 +881,16 @@ Copyright © 2024-2026 Phát Phạm (@pdp7803)
 ---
 
 ## Lịch Sử Thay Đổi
+
+### v6.0.1
+
+**Chuỗi phiên bản:** `PPAPIKey 6.0.1B` (basic) · `PPAPIKey 6.0.1F` (full)
+
+- **CST** — Alert thành công: thanh accent trái lấp đầy góc bo của card
+- **JG / MBP** — Loading: vòng quay quanh logo (không xoay cả khối tròn); logo MBP căn giữa trong vòng
+- **SCL** — HUD overlay tùy chỉnh (không nhấp nháy dim màn hình); sáng/tối; chuyển loading → alert mượt, không dim lại
+- **Minecraft** — Bố cục chữ rõ hơn; không dim toàn màn hình, không viền đen ngoài; dim từng ô pixel; vùng chữ nền trong suốt (bỏ panel đen)
+- **Glass** — Card HUD căn giữa màn hình; loading: spinner trái, chữ phải, padding dọc đều; success/fail: tiêu đề và nội dung sát nhau hơn
 
 ### v6.0.0
 
