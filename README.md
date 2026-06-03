@@ -1,6 +1,6 @@
 <div align="center">
 
-# APIKey 6.0 — Customer Management System
+# APIKey V6 — Customer Management System
 
 ### Professional License Management & Authentication Framework
 
