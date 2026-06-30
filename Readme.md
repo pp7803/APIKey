@@ -4,7 +4,7 @@
 
 ### Professional License Management & Authentication Framework
 
-[![Version](https://img.shields.io/badge/version-6.0.1-blue.svg)](https://github.com/pp7803/APIKey)
+[![Version](https://img.shields.io/badge/version-6.0.2-blue.svg)](https://github.com/pp7803/APIKey)
 [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)](https://www.apple.com/ios)
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
 [![Theos](https://img.shields.io/badge/built%20with-Theos-orange.svg)](https://theos.dev)
@@ -436,6 +436,15 @@ Copyright © 2024-2026 Phat Pham (@pdp7803)
 ---
 
 ## Changelog
+
+### v6.0.2
+
+**Version strings:** `PPAPIKey 6.0.2B` (basic) · `PPAPIKey 6.0.2F` (full)
+
+- **UI Refresh** — Redesigned key entry interfaces and success verification notifications across all themes
+- **Enter Key Themes** — Two new key entry UIs: **UIAL** (native iOS alert) and **GLASS** (Liquid Glass pill modal)
+- **Performance** — Fixed encryption-related issues that caused excessive CPU usage and device overheating
+- **Device ID** — Fixed remaining bugs in UUID/UDID retrieval
 
 ### v6.0.1
 
@@ -881,6 +890,15 @@ Copyright © 2024-2026 Phát Phạm (@pdp7803)
 ---
 
 ## Lịch Sử Thay Đổi
+
+### v6.0.2
+
+**Chuỗi phiên bản:** `PPAPIKey 6.0.2B` (basic) · `PPAPIKey 6.0.2F` (full)
+
+- **Giao diện** — Làm lại giao diện nhập key và thông báo xác thực thành công trên toàn bộ theme
+- **Giao diện nhập key mới** — Bổ sung **UIAL** (alert gốc iOS) và **GLASS** (modal Liquid Glass)
+- **Hiệu năng** — Sửa lỗi mã hóa gây tốn CPU và nóng máy
+- **Device ID** — Sửa các bug còn tồn đọng trong việc lấy UUID/UDID
 
 ### v6.0.1
 
