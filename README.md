@@ -4,7 +4,7 @@
 
 ### Professional License Management & Authentication Framework
 
-[![Version](https://img.shields.io/badge/version-6.0.2-blue.svg)](https://github.com/pp7803/APIKey)
+[![Version](https://img.shields.io/badge/version-6.0.3-blue.svg)](https://github.com/pp7803/APIKey)
 [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)](https://www.apple.com/ios)
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
 [![Theos](https://img.shields.io/badge/built%20with-Theos-orange.svg)](https://theos.dev)
@@ -436,6 +436,19 @@ Copyright © 2024-2026 Phat Pham (@pdp7803)
 ---
 
 ## Changelog
+
+### v6.0.3
+
+**Version strings:** `PPAPIKey 6.0.3B` (basic) · `PPAPIKey 6.0.3F` (full)
+
+> **⚠️ Important:** This version uses a different UDID/UUID system than previous versions. For the best update experience, **delete the old app and reinstall it fresh**.
+
+- **No Blur** — Removed the background blur/dim effect when PPAPIKey UI appears
+- **UDID Interface** — New dedicated UDID retrieval interface
+- **Enter Key Theme** — New **PGAM** key entry UI
+- **Sound Effects** — Added sound effects when interfaces appear
+- **Anti-Crack** — Added a strong anti-crack defense layer
+- **Overlay Fix** — Fixed the overlay bug that covered the app screen when installing via `.tipa`
 
 ### v6.0.2
 
@@ -890,6 +903,19 @@ Copyright © 2024-2026 Phát Phạm (@pdp7803)
 ---
 
 ## Lịch Sử Thay Đổi
+
+### v6.0.3
+
+**Chuỗi phiên bản:** `PPAPIKey 6.0.3B` (basic) · `PPAPIKey 6.0.3F` (full)
+
+> **⚠️ Lưu ý:** Phiên bản này sử dụng hệ thống UDID/UUID khác với các phiên bản trước, nên việc cập nhật tốt nhất là **xoá App cũ đi và cài đặt lại**.
+
+- **Bỏ làm mờ** — Xoá bỏ hiệu ứng làm mờ nền khi PPAPIKey xuất hiện
+- **Giao diện UDID** — Bổ sung giao diện lấy UDID mới
+- **Giao diện nhập key mới** — Bổ sung giao diện **PGAM**
+- **Âm thanh** — Thêm âm thanh khi các giao diện hiện ra
+- **Anti-Crack** — Bổ sung lớp phòng thủ anti-crack mạnh mẽ
+- **Sửa Overlay** — Fix lỗi overlay đè lên màn hình ứng dụng khi cài `.tipa`
 
 ### v6.0.2
 
