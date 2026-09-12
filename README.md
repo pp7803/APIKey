@@ -1,520 +1,64 @@
 <div align="center">
 
-# APIKey 6.0 — Customer Management System
+# APIKey 6.0
 
-### Professional License Management & Authentication Framework
+**Enterprise-grade license authentication & customer management for iOS tweaks**
 
-[![Version](https://img.shields.io/badge/version-6.0.3-blue.svg)](https://github.com/pp7803/APIKey)
-[![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)](https://www.apple.com/ios)
-[![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
-[![Theos](https://img.shields.io/badge/built%20with-Theos-orange.svg)](https://theos.dev)
+[![Version](https://img.shields.io/badge/release-6.0.4-2563EB?style=flat-square)](https://github.com/pp7803/APIKey/releases)
+[![Platform](https://img.shields.io/badge/iOS-14.0%2B-lightgrey?style=flat-square)](https://www.apple.com/ios)
+[![Architecture](https://img.shields.io/badge/arch-arm64-blue?style=flat-square)]()
+[![License](https://img.shields.io/badge/license-Proprietary-red?style=flat-square)](LICENSE)
+[![Theos](https://img.shields.io/badge/build-Theos-orange?style=flat-square)](https://theos.dev)
 
-[English](#english-version) • [Tiếng Việt](#phiên-bản-tiếng-việt)
+[Tiếng Việt](#phiên-bản-tiếng-việt) · [English](#english-version) · [Changelog](#lịch-sử-thay-đổi) · [Portal](https://v5.ppapikey.xyz)
 
 </div>
 
 ---
 
-## English Version
+## <a name="phiên-bản-tiếng-việt"></a>Phiên Bản Tiếng Việt
 
-## Table of Contents
+### Mục Lục
 
-- [Overview](#overview)
-- [What's New in 6.0](#whats-new-in-60)
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [API Reference](#api-reference)
-- [C Bridge API](#c-bridge-api)
-- [Usage Examples](#usage-examples)
-- [Library Variants](#library-variants)
-- [Anti-Hex App](#anti-hex-app)
-- [Themes](#themes)
-- [Support](#support)
+| | |
+|---|---|
+| Bắt đầu | [Tổng quan](#tổng-quan-vi) · [Yêu cầu](#yêu-cầu-hệ-thống-vi) · [Cài đặt](#cài-đặt-vi) · [Cấu hình](#cấu-hình-vi) |
+| Tích hợp | [API](#tài-liệu-api-vi) · [C Bridge](#c-bridge-api-vi) · [Ví dụ](#ví-dụ-sử-dụng-vi) · [Thư viện](#biến-thể-thư-viện) |
+| Sản phẩm | [Phát hành 6.0.4](#phát-hành-604) · [Chủ đề](#chủ-đề-vi) · [Anti-Hex](#ứng-dụng-anti-hex) · [Changelog](#lịch-sử-thay-đổi) |
+| Hỗ trợ | [Liên hệ](#hỗ-trợ-vi) · [Giấy phép](#giấy-phép--bản-quyền) |
 
 ---
 
-## Overview
-
-APIKey 6.0 is a major rewrite of the customer management and license authentication system for iOS jailbreak tweaks. Version 6.0 introduces a clean separation between the tweak entry point and the core library, communicating exclusively through `PPAPIKey.h`. It also adds a C bridge layer, allowing integration from pure C/C++ code without any Objective-C dependency.
-
-### Key Benefits
-
-- **Clean Architecture** — Tweak and core library are fully decoupled; all communication goes through the public header
-- **C Bridge** — New C-compatible API for integration from non-Objective-C codebases
-- **Secure Authentication** — Industry-standard encryption and validation
-- **Device Tracking** — UDID-based device identification
-- **Easy Integration** — Simple API with minimal setup
-- **Multi-language** — Built-in English and Vietnamese support
-- **Independent Toast** — Built-in toast notifications without external dependencies
-
----
-
-## What's New in 6.0
-
-| 5.7 API            | 6.0 API                                   | Notes                                      |
-| ------------------ | ----------------------------------------- | ------------------------------------------ |
-| `sharedInstance`   | `shared`                                  | Shorter, cleaner singleton                 |
-| `setPackageToken:` | `setToken:`                               | Simplified naming                          |
-| `setENLanguage:`   | `setEN:`                                  | Simplified naming                          |
-| `setAppVersion:`   | `setVer:`                                 | Simplified naming                          |
-| `getKey`           | `getDeviceKey`                            | More explicit naming                       |
-| `getUDID`          | `getDeviceID`                             | More explicit naming                       |
-| —                  | **C Bridge** (`setTokenC`, `loadingC`, …) | New: call from pure C/C++                  |
-| —                  | **Tweak Separation**                      | tweak.mm is independent from core          |
-| —                  | **Dual Library**                          | `basic` (all users) and `full` (VIP3 only) |
-
-**Removed from 6.0:** `showCSAL:`, `getDeviceName`, `getiOSVersion`, `getAppVersion`, `getAppName`, `getJailbreakStatus` — these are now handled at the tweak level or removed to keep the core lean.
-
----
-
-## Features
-
-- **License Key Management** — Create, validate, and revoke access keys
-- **Device Information** — Retrieve device key, UDID, bundle ID, and license metadata
-- **Expiration Control** — Time-based license management
-- **Clipboard Integration** — Easy key copying functionality
-- **C Bridge Layer** — Call core functions from C/C++ without Objective-C
-- **Dual Library Variants** — `basic` (lightweight, all users) and `full` (all features, VIP3 only)
-- **Decoupled Architecture** — Tweak entry point separated from core; communication only through public header
-
----
-
-## Requirements
-
-| Component        | Version           |
-| ---------------- | ----------------- |
-| **Platform**     | iOS 14.0+         |
-| **Architecture** | arm64             |
-| **Build System** | Theos             |
-| **C++ Standard** | gnu++17           |
-| **Language**     | Objective-C / C++ |
-
----
-
-## Installation
-
-### 1. Install Theos
-
-Follow the official Theos installation guide for your platform:
-
-```bash
-# macOS
-brew install theos
-
-# Or visit: https://theos.dev/docs/installation
-```
-
-### 2. Download APIKey 6.0
-
-Download the latest release from the [Release section](https://github.com/pp7803/APIKey/releases):
-
-```
-PPAPIKey.h
-libPPAPIKey_full.a      # Full-featured library (VIP3 required)
-libPPAPIKey_basic.a     # Lightweight variant (all users)
-```
-
-### 3. Account Registration
-
-Create your developer account and obtain your package token:
-
-🔗 **[Register at APIKey Portal](https://new.ppapikey.xyz)**
-
----
-
-## Configuration
-
-### Project Setup
-
-Add APIKey to your Theos project's `Makefile`:
-
-```makefile
-ARCHS = arm64
-TARGET = iphone:clang:latest:14.0
-
-TWEAK_NAME = YourTweak
-
-$(TWEAK_NAME)_FRAMEWORKS = UIKit AVFoundation Foundation SystemConfiguration SafariServices AudioToolbox Accelerate
-
-# Link APIKey library (choose one)
-# $(TWEAK_NAME)_LDFLAGS += libPPAPIKey_full.a    # Full-featured (VIP3 required)
-$(TWEAK_NAME)_LDFLAGS += libPPAPIKey_basic.a  # Lightweight (all users)
-
-$(TWEAK_NAME)_CCFLAGS = -std=gnu++17 -Wno-deprecated-declarations -Wno-unused-variable
-$(TWEAK_NAME)_FILES = tweak.mm
-
-include $(THEOS_MAKE_PATH)/tweak.mk
-```
-
----
-
-## API Reference
-
-### PPAPIKey Interface (Objective-C)
-
-```objective-c
-#import <Foundation/Foundation.h>
-
-@interface PPAPIKey : NSObject
-
-#pragma mark - Singleton
-+ (instancetype)shared;
-
-#pragma mark - Configuration
-/**
- * Sets the package authentication token
- * @param token Your unique package token from APIKey portal
- */
-- (void)setToken:(NSString *)token;
-
-/**
- * Enables/disables English language mode
- * @param enable YES for English, NO for Vietnamese
- */
-- (void)setEN:(BOOL)enable;
-
-/**
- * Sets the application version
- * @param ver Version string (e.g., "1.0")
- */
-- (void)setVer:(NSString *)ver;
-
-#pragma mark - Core
-/**
- * Initializes APIKey and executes completion block on success
- * @param execute Completion block called after successful initialization
- */
-- (void)loading:(void (^)(void))execute;
-
-/**
- * Packages device data for server submission
- * @param completion Block receiving the packaged data
- */
-- (void)packageData:(void (^)(id data))completion;
-
-#pragma mark - Information Retrieval
-- (NSString *)getDeviceKey;      // Current license key
-- (NSString *)getKeyExpire;      // Key expiration date
-- (NSString *)getKeyAmount;      // Remaining key quota
-- (NSString *)getDeviceID;       // Device UDID
-- (NSString *)getAppBundle;      // Bundle identifier
-
-#pragma mark - Key Management
-- (void)exitKey;                 // Remove current license key
-- (void)copyKey;                 // Copy license key to clipboard
-
-@end
-```
-
----
-
-## C Bridge API
-
-APIKey 6.0 exposes a pure C bridge, allowing integration from C/C++ code without importing Objective-C headers:
-
-```c
-// Set the package authentication token
-extern void setTokenC(const char *token);
-
-// Enable/disable English language mode (1 = English, 0 = Vietnamese)
-extern void setENC(int enable);
-
-// Set the application version
-extern void setVerC(const char *ver);
-
-// Initialize and execute completion block on success
-extern void loadingC(void (^execute)(void));
-
-// Package device data for server submission
-extern void packageData(void (^completion)(id data));
-```
-
-> **Note:** `loadingC` and `packageData` use blocks, which require Objective-C block support (`-fblocks`). For pure C environments, use the Objective-C wrapper.
-
----
-
-## Usage Examples
-
-### Basic Implementation (Objective-C)
-
-```objective-c
-#import "YourTweak.h"
-#import "PPAPIKey.h"
-
-%hook YourClass
-
-- (void)viewDidLoad {
-    %orig;
-
-    PPAPIKey *api = [PPAPIKey shared];
-
-    [api setToken:@"your_package_token_here"];
-    [api setVer:@"1.0"];
-    [api setEN:YES];
-
-    [api loading:^{
-        NSLog(@"[APIKey] Initialized successfully");
-        // Your code here — menu loading, feature activation, etc.
-    }];
-}
-
-%end
-```
-
-### Basic Implementation (C Bridge)
-
-```objective-c
-// In your tweak.mm — no need to import PPAPIKey.h
-
-extern "C" void setTokenC(const char *token);
-extern "C" void setENC(int enable);
-extern "C" void setVerC(const char *ver);
-extern "C" void loadingC(void (^execute)(void));
-
-static void run_api(void)
-{
-    setTokenC("your_package_token_here");
-    setENC(0);       // 0 = Vietnamese
-    setVerC("1.0");
-
-    loadingC(^{
-        NSLog(@"[APIKey] Initialized successfully");
-    });
-}
-```
-
-### Retrieve Device Information
-
-```objective-c
-PPAPIKey *api = [PPAPIKey shared];
-
-NSString *key    = [api getDeviceKey];
-NSString *expire = [api getKeyExpire];
-NSString *amount = [api getKeyAmount];
-NSString *udid   = [api getDeviceID];
-NSString *bundle = [api getAppBundle];
-
-NSLog(@"Key: %@, Expires: %@, Quota: %@", key, expire, amount);
-NSLog(@"Device: %@, Bundle: %@", udid, bundle);
-```
-
-### Key Management
-
-```objective-c
-PPAPIKey *api = [PPAPIKey shared];
-
-// Copy key to clipboard
-[api copyKey];
-
-// Remove key (logout)
-[api exitKey];
-```
-
-### Full Tweak Template (tweak.mm)
-
-```objective-c
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#include <CoreFoundation/CoreFoundation.h>
-
-#import "PPAPIKey.h"
-
-extern "C" void setTokenC(const char *token);
-extern "C" void setENC(int enable);
-extern "C" void setVerC(const char *ver);
-extern "C" void loadingC(void (^execute)(void));
-
-// ---- Launch detection via CFNotificationCenter ----
-static void launch_callback(CFNotificationCenterRef __unused c,
-                            void *__unused o,
-                            CFStringRef __unused n,
-                            const void *__unused obj,
-                            CFDictionaryRef __unused ui)
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        setTokenC("your_package_token_here");
-        setENC(0);
-        setVerC("1.0");
-        loadingC(^{
-            NSLog(@"[APIKey] Ready");
-        });
-    });
-}
-
-__attribute__((constructor))
-static void tweak_init(void)
-{
-    CFNotificationCenterAddObserver(
-        CFNotificationCenterGetLocalCenter(),
-        NULL,
-        launch_callback,
-        (CFStringRef)UIApplicationDidFinishLaunchingNotification,
-        NULL,
-        CFNotificationSuspensionBehaviorDeliverImmediately
-    );
-}
-```
-
----
-
-## Library Variants
-
-| Variant   | File                  | Description                                                                                        |
-| --------- | --------------------- | -------------------------------------------------------------------------------------------------- |
-| **Full**  | `libPPAPIKey_full.a`  | Anti-Hex Protected — protects dylib at generation + protects during key validation. **VIP3 only.** |
-| **Basic** | `libPPAPIKey_basic.a` | Protects during key validation only. Lighter, available to all users.                              |
-
----
-
-## Anti-Hex App
-
-We provide a dedicated Anti-Hex application available on 3 platforms (macOS, Windows, iOS) to help you secure your tweak:
-
-### Download
-
-- [PPAPIKey Hash Generator (zip)](https://ppapikey.xyz/PPAPIkeyHashGenerator.zip) — includes `PPAPIKey Hash Generator.dmg`, `PPAPIKey Hash Generator.ipa`, `PPHashGenerator.Windows-win-x64.zip`
-
-<div align="center">
-
-|            macOS             |              Windows               |            iOS             |
-| :--------------------------: | :--------------------------------: | :------------------------: |
-| ![macOS](AntiHexApp/MAC.png) | ![Windows](AntiHexApp/Windows.png) | ![iOS](AntiHexApp/iOS.png) |
-
-</div>
-
-### Workflow
-
-- **VIP3 User:** Can input the `Dylib` into the Tool, then execute **Anti-Hex Full**.
-- **VIP2 User (and below):** Can copy the **IDF** and **Signature** from the Tool, then access `Dashboard -> Package Hash` and add the Hash to execute **Anti-Hex Semi**.
-
----
-
-## Themes
-
-APIKey 6.0 **Full** includes 12 professional themes to customize your UI:
-
-<div align="center">
-
-|                                          |                          |                                      |
-| :--------------------------------------: | :----------------------: | :----------------------------------: |
-|               **ANDROID**                |         **CST**          |              **GLASS**               |
-|     ![ANDROID](APITheme/ANDROID.png)     | ![CST](APITheme/CST.png) |     ![GLASS](APITheme/GLASS.png)     |
-|                **HACKER**                |          **JG**          |              **LINUX**               |
-|      ![HACKER](APITheme/HACKER.png)      |  ![JG](APITheme/JG.png)  |     ![LINUX](APITheme/LINUX.png)     |
-|                 **MAC**                  |         **MBP**          |            **MINECRAFT**             |
-|         ![MAC](APITheme/MAC.png)         | ![MBP](APITheme/MBP.png) | ![MINECRAFT](APITheme/MINECRAFT.png) |
-|             **NEWYEAR2026**              |         **SCL**          |                **XP**                |
-| ![NEWYEAR2026](APITheme/NEWYEAR2026.png) | ![SCL](APITheme/SCL.png) |        ![XP](APITheme/XP.png)        |
-
-</div>
-
----
-
-## Support
-
-### Contact
-
-- **Telegram**: [@pdp7803](https://t.me/pdp7803)
-- **Email**: support@ppapikey.xyz
-
----
-
-## License & Copyright
-
-```
-Copyright © 2024-2026 Phat Pham (@pdp7803)
-```
-
-### Important Notes
-
-**Security**: Never commit your package token to version control
-**Updates**: Keep APIKey updated for latest security patches
-**Compatibility**: Test on target iOS versions before release
-
----
-
-## Changelog
-
-### v6.0.3
-
-**Version strings:** `PPAPIKey 6.0.3B` (basic) · `PPAPIKey 6.0.3F` (full)
-
-> **⚠️ Important:** This version uses a different UDID/UUID system than previous versions. For the best update experience, **delete the old app and reinstall it fresh**.
-
-- **No Blur** — Removed the background blur/dim effect when PPAPIKey UI appears
-- **UDID Interface** — New dedicated UDID retrieval interface
-- **Enter Key Theme** — New **PGAM** key entry UI
-- **Sound Effects** — Added sound effects when interfaces appear
-- **Anti-Crack** — Added a strong anti-crack defense layer
-- **Overlay Fix** — Fixed the overlay bug that covered the app screen when installing via `.tipa`
-
-### v6.0.2
-
-**Version strings:** `PPAPIKey 6.0.2B` (basic) · `PPAPIKey 6.0.2F` (full)
-
-- **UI Refresh** — Redesigned key entry interfaces and success verification notifications across all themes
-- **Enter Key Themes** — Two new key entry UIs: **UIAL** (native iOS alert) and **GLASS** (Liquid Glass pill modal)
-- **Performance** — Fixed encryption-related issues that caused excessive CPU usage and device overheating
-- **Device ID** — Fixed remaining bugs in UUID/UDID retrieval
-
-### v6.0.1
-
-**Version strings:** `PPAPIKey 6.0.1B` (basic) · `PPAPIKey 6.0.1F` (full)
-
-- **CST** — Success alert: left accent bar fills the card’s rounded corners correctly
-- **JG / MBP** — Loading indicator: ring animates around the logo (not the whole circle); MBP logo centered in the ring
-- **SCL** — Custom overlay HUD (no dim-screen flash); dark/light mode; smooth handoff from loading to alert without re-dimming
-- **Minecraft** — Clearer text layout; no full-screen dim or outer black shell; dim applied per pixel tile only; text areas use transparent panels (no black message backgrounds)
-- **Glass** — HUD card centered on screen; loading: spinner left, message right, balanced vertical padding; success/fail: title and body text spaced closer together
-
-### v6.0.0
-
-- Complete architecture rewrite: tweak and core are fully decoupled
-- New C Bridge API for C/C++ integration (`setTokenC`, `setENC`, `setVerC`, `loadingC`, `packageData`)
-- Simplified naming: `shared`, `setToken:`, `setEN:`, `setVer:`
-- Renamed getters: `getDeviceKey`, `getDeviceID`
-- Dual library: `basic` (lightweight) and `full` (all features)
-- Independent toast notification system
-- Minimum iOS target raised to 14.0
-- Built with gnu++17 standard
-
----
-
-## Phiên Bản Tiếng Việt
-
-## Mục Lục
-
-- [Tổng Quan](#tổng-quan-vi)
-- [Tính Năng Mới Trong 6.0](#tính-năng-mới-trong-60)
-- [Tính Năng](#tính-năng-vi)
-- [Yêu Cầu Hệ Thống](#yêu-cầu-hệ-thống-vi)
-- [Cài Đặt](#cài-đặt-vi)
-- [Cấu Hình](#cấu-hình-vi)
-- [Tài Liệu API](#tài-liệu-api-vi)
-- [C Bridge API](#c-bridge-api-vi)
-- [Ví Dụ Sử Dụng](#ví-dụ-sử-dụng-vi)
-- [Biến Thể Thư Viện](#biến-thể-thư-viện)
-- [Ứng Dụng Anti-Hex](#ứng-dụng-anti-hex)
-- [Chủ Đề](#chủ-đề-vi)
-- [Hỗ Trợ](#hỗ-trợ-vi)
+## <a name="phát-hành-604"></a>Phát Hành 6.0.4
+
+> **Mã build:** `PPAPIKey 6.0.4B` (Basic) · `PPAPIKey 6.0.4F` (Full)
+>
+> **Lưu ý khi nâng cấp:** Khuyến nghị **gỡ phiên bản cũ và cài lại sạch** khi chuyển sang `6.0.4`, vì phiên bản này sử dụng cơ chế Keychain và lưu trữ định danh mới. Cài đè có thể giữ lại dữ liệu Keychain cũ, gây xung đột thiết bị hoặc trạng thái key.
+
+| Hạng mục | Tóm tắt |
+| -------- | ------- |
+| **Giao diện Glass** | Blur fullscreen siêu mỏng; nội dung hiển thị trực tiếp trên nền app — không card đục. Nhập key: ô trong suốt, nút OK tím, icon Font Awesome, bộ đếm nối moto (`moto - [giây]`). Tăng khoảng cách chữ ↔ thanh countdown trên loading/alert. Typography thích ứng Light/Dark. |
+| **Âm thanh** | Gỡ âm thanh khi mở Enter Key và Get UDID. Giữ haptic. Âm loading và alert auto không đổi. |
+| **Tài liệu** | Gom release notes vào README này; xoá README khách hàng trùng lặp. |
 
 ---
 
 ## <a name="tổng-quan-vi"></a>Tổng Quan
 
-APIKey 6.0 là bản viết lại toàn diện của hệ thống quản lý khách hàng và xác thực giấy phép dành cho tweak iOS jailbreak. Phiên bản 6.0 tách biệt hoàn toàn tweak entry point và thư viện lõi, chỉ giao tiếp qua `PPAPIKey.h`. Đồng thời bổ sung C Bridge layer, cho phép tích hợp từ code C/C++ thuần mà không phụ thuộc Objective-C.
+**APIKey** là framework xác thực license production-ready cho tweak iOS — quản lý validate key, gắn thiết bị, giao tiếp server bảo mật và lớp UI có theme, giúp developer tập trung vào logic sản phẩm.
 
-### Lợi Ích Chính
+Phiên bản **6.0** tái kiến trúc toàn bộ: tweak và thư viện lõi tách biệt hoàn toàn, giao tiếp qua header công khai `PPAPIKey.h`. **C Bridge** cho phép tích hợp từ C/C++ thuần.
 
-- **Kiến Trúc Sạch** — Tweak và thư viện lõi được tách biệt hoàn toàn; mọi giao tiếp qua public header
-- **C Bridge** — API tương thích C mới cho phép tích hợp từ codebase không dùng Objective-C
-- **Xác Thực Bảo Mật** — Mã hóa và xác thực theo tiêu chuẩn công nghiệp
-- **Theo Dõi Thiết Bị** — Nhận diện thiết bị dựa trên UDID
-- **Tích Hợp Dễ Dàng** — API đơn giản với thiết lập tối thiểu
-- **Đa Ngôn Ngữ** — Hỗ trợ sẵn tiếng Anh và tiếng Việt
-- **Toast Độc Lập** — Toast notification tích hợp sẵn, không phụ thuộc bên ngoài
+### Vì sao chọn APIKey 6.0
+
+| Khả năng | Mô tả |
+| -------- | ----- |
+| **Kiến trúc module** | `tweak.mm` và core độc lập; API công khai ổn định |
+| **C Bridge** | `setTokenC`, `loadingC`, `packageData`, … cho codebase C/C++ |
+| **Hai tier thư viện** | `basic` (bảo vệ validate) và `full` (Anti-Hex + validate, VIP3) |
+| **12 theme UI** | HUD, nhập key, UDID, update/skip — cấu hình theo package |
+| **Bảo mật** | Mã hóa transport, anti-tamper, fingerprint thiết bị |
+| **Đa ngôn ngữ** | Tiếng Anh và Tiếng Việt tích hợp sẵn |
 
 ---
 
@@ -538,13 +82,13 @@ APIKey 6.0 là bản viết lại toàn diện của hệ thống quản lý kh�
 
 ## <a name="tính-năng-vi"></a>Tính Năng
 
-- **Quản Lý License Key** — Tạo, xác thực và thu hồi key truy cập
-- **Thông Tin Thiết Bị** — Lấy device key, UDID, bundle ID và metadata giấy phép
-- **Kiểm Soát Hết Hạn** — Quản lý giấy phép theo thời gian
-- **Tích Hợp Clipboard** — Sao chép key dễ dàng
-- **C Bridge Layer** — Gọi hàm lõi từ C/C++ không cần Objective-C
-- **Thư Viện Kép** — `basic` (nhẹ, mọi người dùng) và `full` (đầy đủ tính năng, chỉ VIP3)
-- **Kiến Trúc Tách Biệt** — Tweak entry point độc lập với core; chỉ giao tiếp qua public header
+| Module | Khả năng |
+| ------ | -------- |
+| **License** | Validate key, hết hạn, quota, sao chép clipboard |
+| **Thiết bị** | Gắn UDID, device key, bundle ID, package data lên server |
+| **Tích hợp** | API Objective-C + C Bridge · tweak/core tách qua `PPAPIKey.h` |
+| **Phân phối** | `libPPAPIKey_basic.a` (mọi tier) · `libPPAPIKey_full.a` (VIP3, Anti-Hex) |
+| **UX** | 12 theme · UI song ngữ · toast · haptic |
 
 ---
 
@@ -561,6 +105,8 @@ APIKey 6.0 là bản viết lại toàn diện của hệ thống quản lý kh�
 ---
 
 ## <a name="cài-đặt-vi"></a>Cài Đặt
+
+> **Quy trình nhanh:** Cài Theos → tải bản release → đăng ký [portal](https://v5.ppapikey.xyz) → link thư viện trong `Makefile`.
 
 ### 1. Cài Đặt Theos
 
@@ -587,7 +133,7 @@ libPPAPIKey_basic.a     # Phiên bản nhẹ (mọi người dùng)
 
 Tạo tài khoản nhà phát triển và lấy package token:
 
-🔗 **[Đăng ký tại APIKey Portal](https://new.ppapikey.xyz)**
+🔗 **[Đăng ký tại APIKey Portal](https://v5.ppapikey.xyz)**
 
 ---
 
@@ -860,7 +406,7 @@ Chúng tôi cung cấp ứng dụng Anti-Hex chuyên dụng trên 3 nền tảng
 
 ## <a name="chủ-đề-vi"></a>Chủ Đề
 
-APIKey 6.0 **Full** bao gồm 12 chủ đề chuyên nghiệp để tùy chỉnh giao diện của bạn:
+Thư viện **Full** cung cấp **12 theme UI production**, cấu hình theo package cho HUD, nhập key, extension (UDID / update / skip) và toast.
 
 <div align="center">
 
@@ -877,82 +423,635 @@ APIKey 6.0 **Full** bao gồm 12 chủ đề chuyên nghiệp để tùy chỉnh
 
 </div>
 
+#### GLASS *(cập nhật 6.0.4)*
+
+Trải nghiệm Liquid Glass trên blur fullscreen siêu mỏng. Nhập key, loading HUD, alert auto, Get UDID và modal update/skip hiển thị **trực tiếp trên nền app mờ** — không card đục.
+
+| Thành phần | Hành vi |
+| ---------- | ------- |
+| Nhập key | Ô trong suốt · OK gradient tím · icon Font Awesome · countdown inline với moto (`moto - [giây]`) |
+| Loading / Alert | Spinner/icon căn giữa · khoảng cách chữ ↔ thanh countdown cân đối · typography Light/Dark |
+| Phản hồi | Haptic khi tương tác · không phát âm thanh enter-key / UDID |
+
 ---
 
 ## <a name="hỗ-trợ-vi"></a>Hỗ Trợ
 
-### Liên Hệ
+| Kênh | Liên hệ |
+| ---- | ------- |
+| **Portal developer** | [v5.ppapikey.xyz](https://v5.ppapikey.xyz) |
+| **Telegram** | [@pdp7803](https://t.me/pdp7803) |
+| **Email** | duyphatpham783@gmail.com |
 
-- **Telegram**: [@pdp7803](https://t.me/pdp7803)
-- **Email**: support@ppapikey.xyz
+Cấu hình package, chọn theme và thiết lập Anti-Hex thực hiện trên dashboard portal.
 
 ---
 
 ## Giấy Phép & Bản Quyền
 
 ```
-Copyright © 2024-2026 Phát Phạm (@pdp7803)
+Copyright © 2024–2026 Phát Phạm (@pdp7803). All rights reserved.
 ```
 
-### Lưu Ý Quan Trọng
+### Khuyến nghị
 
-**Bảo Mật**: Không bao giờ commit package token vào version control
-**Cập Nhật**: Giữ APIKey luôn được cập nhật để có các bản vá bảo mật mới nhất
-**Tương Thích**: Kiểm tra trên các phiên bản iOS mục tiêu trước khi release
+1. **Không commit** package token vào git hoặc repo công khai.
+2. **Gắn version thư viện** khi build production; test trên iOS mục tiêu trước khi phát hành.
+3. **Cập nhật APIKey** thường xuyên để nhận bản vá bảo mật và sửa tương thích.
 
 ---
 
-## Lịch Sử Thay Đổi
+## <a name="lịch-sử-thay-đổi"></a>Lịch Sử Thay Đổi
 
-### v6.0.3
+<details open>
+<summary><strong>v6.0.4</strong> — Tinh chỉnh Glass UI & chính sách âm thanh</summary>
 
-**Chuỗi phiên bản:** `PPAPIKey 6.0.3B` (basic) · `PPAPIKey 6.0.3F` (full)
+**Build:** `PPAPIKey 6.0.4B` · `PPAPIKey 6.0.4F`
 
-> **⚠️ Lưu ý:** Phiên bản này sử dụng hệ thống UDID/UUID khác với các phiên bản trước, nên việc cập nhật tốt nhất là **xoá App cũ đi và cài đặt lại**.
+| Hạng mục | Thay đổi |
+| -------- | -------- |
+| **UI · Glass** | Blur fullscreen; layout trực tiếp trên nền; OK tím; FA icon; countdown moto; spacing loading/alert |
+| **Âm thanh** | Gỡ `enterkey_showing`, `getudid_showing`; giữ haptic |
+| **Tài liệu** | Một README chính thức |
 
-- **Bỏ làm mờ** — Xoá bỏ hiệu ứng làm mờ nền khi PPAPIKey xuất hiện
-- **Giao diện UDID** — Bổ sung giao diện lấy UDID mới
-- **Giao diện nhập key mới** — Bổ sung giao diện **PGAM**
-- **Âm thanh** — Thêm âm thanh khi các giao diện hiện ra
-- **Anti-Crack** — Bổ sung lớp phòng thủ anti-crack mạnh mẽ
-- **Sửa Overlay** — Fix lỗi overlay đè lên màn hình ứng dụng khi cài `.tipa`
+</details>
 
-### v6.0.2
+<details>
+<summary><strong>v6.0.3</strong> — Hệ thống UDID & enter-key PGAM</summary>
 
-**Chuỗi phiên bản:** `PPAPIKey 6.0.2B` (basic) · `PPAPIKey 6.0.2F` (full)
+**Build:** `PPAPIKey 6.0.3B` · `PPAPIKey 6.0.3F`
 
-- **Giao diện** — Làm lại giao diện nhập key và thông báo xác thực thành công trên toàn bộ theme
-- **Giao diện nhập key mới** — Bổ sung **UIAL** (alert gốc iOS) và **GLASS** (modal Liquid Glass)
-- **Hiệu năng** — Sửa lỗi mã hóa gây tốn CPU và nóng máy
-- **Device ID** — Sửa các bug còn tồn đọng trong việc lấy UUID/UDID
+> **Migration:** Hệ UDID/UUID thay đổi. Khuyến nghị **cài lại sạch** khi nâng cấp.
 
-### v6.0.1
+| Hạng mục | Thay đổi |
+| -------- | -------- |
+| **UI** | Giao diện Get UDID · theme nhập key **PGAM** |
+| **Âm thanh** | Thêm âm thanh khi giao diện xuất hiện |
+| **Bảo mật** | Lớp anti-crack |
+| **Sửa lỗi** | Overlay che app khi cài `.tipa` · bỏ blur nền toàn cục |
 
-**Chuỗi phiên bản:** `PPAPIKey 6.0.1B` (basic) · `PPAPIKey 6.0.1F` (full)
+</details>
 
-- **CST** — Alert thành công: thanh accent trái lấp đầy góc bo của card
-- **JG / MBP** — Loading: vòng quay quanh logo (không xoay cả khối tròn); logo MBP căn giữa trong vòng
-- **SCL** — HUD overlay tùy chỉnh (không nhấp nháy dim màn hình); sáng/tối; chuyển loading → alert mượt, không dim lại
-- **Minecraft** — Bố cục chữ rõ hơn; không dim toàn màn hình, không viền đen ngoài; dim từng ô pixel; vùng chữ nền trong suốt (bỏ panel đen)
-- **Glass** — Card HUD căn giữa màn hình; loading: spinner trái, chữ phải, padding dọc đều; success/fail: tiêu đề và nội dung sát nhau hơn
+<details>
+<summary><strong>v6.0.2</strong> — Theme nhập key & hiệu năng</summary>
 
-### v6.0.0
+**Build:** `PPAPIKey 6.0.2B` · `PPAPIKey 6.0.2F`
 
-- Viết lại toàn bộ kiến trúc: tweak và core được tách biệt hoàn toàn
-- Bổ sung C Bridge API cho phép tích hợp C/C++ (`setTokenC`, `setENC`, `setVerC`, `loadingC`, `packageData`)
-- Đơn giản hóa tên gọi: `shared`, `setToken:`, `setEN:`, `setVer:`
-- Đổi tên getter: `getDeviceKey`, `getDeviceID`
-- Thư viện kép: `basic` (nhẹ) và `full` (đầy đủ)
-- Hệ thống toast notification độc lập
-- Yêu cầu iOS tối thiểu 14.0
-- Biên dịch với chuẩn gnu++17
+- Làm lại giao diện nhập key và alert xác thực trên mọi theme
+- Engine nhập key mới: **UIAL** và **GLASS**
+- Sửa mã hóa gây CPU cao / nóng máy
+- Sửa bug lấy UUID/UDID
+
+</details>
+
+<details>
+<summary><strong>v6.0.1</strong> — Polish HUD theo theme</summary>
+
+**Build:** `PPAPIKey 6.0.1B` · `PPAPIKey 6.0.1F`
+
+- **CST** — Thanh accent khớp góc bo card
+- **JG / MBP** — Vòng loading quanh logo
+- **SCL** — HUD overlay tùy chỉnh; chuyển loading → alert mượt
+- **Minecraft** — Dim từng pixel; panel chữ trong suốt
+- **Glass** — Layout card HUD ban đầu
+
+</details>
+
+<details>
+<summary><strong>v6.0.0</strong> — Viết lại lớn</summary>
+
+- Kiến trúc tweak / core tách biệt · C Bridge API
+- Đổi tên API: `shared`, `setToken:`, `getDeviceKey`, `getDeviceID`, …
+- Thư viện kép (`basic` / `full`) · toast độc lập
+- iOS tối thiểu **14.0** · **gnu++17**
+
+</details>
+
+---
+
+## <a name="english-version"></a>English Version
+
+### Table of Contents
+
+| | |
+|---|---|
+| Getting started | [Overview](#overview) · [Requirements](#requirements) · [Installation](#installation) · [Configuration](#configuration) |
+| Integration | [API Reference](#api-reference) · [C Bridge](#c-bridge-api) · [Examples](#usage-examples) · [Library Variants](#library-variants) |
+| Product | [Release 6.0.4](#release-604) · [Themes](#themes) · [Anti-Hex](#anti-hex-app) · [Changelog](#changelog) |
+| Support | [Contact](#support) · [License](#license--copyright) |
+
+---
+
+## <a name="release-604"></a>Release 6.0.4
+
+> **Build identifiers:** `PPAPIKey 6.0.4B` (Basic) · `PPAPIKey 6.0.4F` (Full)
+>
+> **Upgrade notice:** A **clean reinstall is recommended** when upgrading to `6.0.4`, because this release uses a new Keychain and device-identity storage mechanism. Installing over an older version may retain legacy Keychain data and cause device-binding or key-state conflicts.
+
+| Category | Summary |
+| -------- | ------- |
+| **Glass UI** | Full-screen ultra-thin blur; content renders directly on the app background — no opaque card. Enter Key uses a transparent field, purple OK button, Font Awesome icons, and inline countdown (`moto - [seconds]`). Improved spacing on loading and auto-alert HUDs. Light/Dark adaptive typography. |
+| **Audio** | Removed enter-key and Get UDID appearance sounds. Haptic feedback retained. Loading and auto-alert audio unchanged. |
+| **Documentation** | Consolidated release notes into this README; removed duplicate customer README. |
+
+---
+
+## Overview
+
+**APIKey** is a production-ready authentication framework for iOS tweaks. It handles license validation, device binding, secure server communication, and a fully themed UI layer — so developers can focus on product logic instead of auth infrastructure.
+
+Version **6.0** re-architected the stack: the tweak entry point and core library are fully decoupled and communicate only through the public header `PPAPIKey.h`. A **C Bridge** layer enables integration from pure C/C++ without importing Objective-C headers.
+
+### Why APIKey 6.0
+
+| Capability | Description |
+| ---------- | ----------- |
+| **Modular architecture** | Tweak (`tweak.mm`) and core library are independent; stable public API surface |
+| **C Bridge** | `setTokenC`, `loadingC`, `packageData`, … for C/C++ codebases |
+| **Dual library tiers** | `basic` (validation protection) and `full` (Anti-Hex + validation, VIP3) |
+| **12 UI themes** | HUD, enter-key, UDID, update/skip flows — configurable per package |
+| **Security** | Encrypted transport, anti-tamper, device fingerprinting |
+| **Localization** | Built-in English and Vietnamese |
+
+---
+
+## What's New in 6.0
+
+| 5.7 API            | 6.0 API                                   | Notes                                      |
+| ------------------ | ----------------------------------------- | ------------------------------------------ |
+| `sharedInstance`   | `shared`                                  | Shorter, cleaner singleton                 |
+| `setPackageToken:` | `setToken:`                               | Simplified naming                          |
+| `setENLanguage:`   | `setEN:`                                  | Simplified naming                          |
+| `setAppVersion:`   | `setVer:`                                 | Simplified naming                          |
+| `getKey`           | `getDeviceKey`                            | More explicit naming                       |
+| `getUDID`          | `getDeviceID`                             | More explicit naming                       |
+| —                  | **C Bridge** (`setTokenC`, `loadingC`, …) | New: call from pure C/C++                  |
+| —                  | **Tweak Separation**                      | tweak.mm is independent from core          |
+| —                  | **Dual Library**                          | `basic` (all users) and `full` (VIP3 only) |
+
+**Removed from 6.0:** `showCSAL:`, `getDeviceName`, `getiOSVersion`, `getAppVersion`, `getAppName`, `getJailbreakStatus` — these are now handled at the tweak level or removed to keep the core lean.
+
+---
+
+## Features
+
+| Module | Capability |
+| ------ | ---------- |
+| **Licensing** | Key validation, expiration control, quota tracking, clipboard copy |
+| **Device** | UDID binding, device key, bundle ID, server-side package data |
+| **Integration** | Objective-C API + C Bridge · decoupled tweak/core via `PPAPIKey.h` |
+| **Distribution** | `libPPAPIKey_basic.a` (all tiers) · `libPPAPIKey_full.a` (VIP3, Anti-Hex) |
+| **UX** | 12 themes · bilingual UI · toast · haptic feedback |
+
+---
+
+## Requirements
+
+| Component        | Version           |
+| ---------------- | ----------------- |
+| **Platform**     | iOS 14.0+         |
+| **Architecture** | arm64             |
+| **Build System** | Theos             |
+| **C++ Standard** | gnu++17           |
+| **Language**     | Objective-C / C++ |
+
+---
+
+## Installation
+
+> **Quick path:** Install Theos → download release artifacts → register on the [developer portal](https://v5.ppapikey.xyz) → link library in your `Makefile`.
+
+### 1. Install Theos
+
+Follow the official Theos installation guide for your platform:
+
+```bash
+# macOS
+brew install theos
+
+# Or visit: https://theos.dev/docs/installation
+```
+
+### 2. Download APIKey 6.0
+
+Download the latest release from the [Release section](https://github.com/pp7803/APIKey/releases):
+
+```
+PPAPIKey.h
+libPPAPIKey_full.a      # Full-featured library (VIP3 required)
+libPPAPIKey_basic.a     # Lightweight variant (all users)
+```
+
+### 3. Account Registration
+
+Create your developer account and obtain your package token:
+
+🔗 **[Register at APIKey Portal](https://v5.ppapikey.xyz)**
+
+---
+
+## Configuration
+
+### Project Setup
+
+Add APIKey to your Theos project's `Makefile`:
+
+```makefile
+ARCHS = arm64
+TARGET = iphone:clang:latest:14.0
+
+TWEAK_NAME = YourTweak
+
+$(TWEAK_NAME)_FRAMEWORKS = UIKit AVFoundation Foundation SystemConfiguration SafariServices AudioToolbox Accelerate
+
+# Link APIKey library (choose one)
+# $(TWEAK_NAME)_LDFLAGS += libPPAPIKey_full.a    # Full-featured (VIP3 required)
+$(TWEAK_NAME)_LDFLAGS += libPPAPIKey_basic.a  # Lightweight (all users)
+
+$(TWEAK_NAME)_CCFLAGS = -std=gnu++17 -Wno-deprecated-declarations -Wno-unused-variable
+$(TWEAK_NAME)_FILES = tweak.mm
+
+include $(THEOS_MAKE_PATH)/tweak.mk
+```
+
+---
+
+## API Reference
+
+### PPAPIKey Interface (Objective-C)
+
+```objective-c
+#import <Foundation/Foundation.h>
+
+@interface PPAPIKey : NSObject
+
+#pragma mark - Singleton
++ (instancetype)shared;
+
+#pragma mark - Configuration
+/**
+ * Sets the package authentication token
+ * @param token Your unique package token from APIKey portal
+ */
+- (void)setToken:(NSString *)token;
+
+/**
+ * Enables/disables English language mode
+ * @param enable YES for English, NO for Vietnamese
+ */
+- (void)setEN:(BOOL)enable;
+
+/**
+ * Sets the application version
+ * @param ver Version string (e.g., "1.0")
+ */
+- (void)setVer:(NSString *)ver;
+
+#pragma mark - Core
+/**
+ * Initializes APIKey and executes completion block on success
+ * @param execute Completion block called after successful initialization
+ */
+- (void)loading:(void (^)(void))execute;
+
+/**
+ * Packages device data for server submission
+ * @param completion Block receiving the packaged data
+ */
+- (void)packageData:(void (^)(id data))completion;
+
+#pragma mark - Information Retrieval
+- (NSString *)getDeviceKey;      // Current license key
+- (NSString *)getKeyExpire;      // Key expiration date
+- (NSString *)getKeyAmount;      // Remaining key quota
+- (NSString *)getDeviceID;       // Device UDID
+- (NSString *)getAppBundle;      // Bundle identifier
+
+#pragma mark - Key Management
+- (void)exitKey;                 // Remove current license key
+- (void)copyKey;                 // Copy license key to clipboard
+
+@end
+```
+
+---
+
+## C Bridge API
+
+APIKey 6.0 exposes a pure C bridge, allowing integration from C/C++ code without importing Objective-C headers:
+
+```c
+// Set the package authentication token
+extern void setTokenC(const char *token);
+
+// Enable/disable English language mode (1 = English, 0 = Vietnamese)
+extern void setENC(int enable);
+
+// Set the application version
+extern void setVerC(const char *ver);
+
+// Initialize and execute completion block on success
+extern void loadingC(void (^execute)(void));
+
+// Package device data for server submission
+extern void packageData(void (^completion)(id data));
+```
+
+> **Note:** `loadingC` and `packageData` use blocks, which require Objective-C block support (`-fblocks`). For pure C environments, use the Objective-C wrapper.
+
+---
+
+## Usage Examples
+
+### Basic Implementation (Objective-C)
+
+```objective-c
+#import "YourTweak.h"
+#import "PPAPIKey.h"
+
+%hook YourClass
+
+- (void)viewDidLoad {
+    %orig;
+
+    PPAPIKey *api = [PPAPIKey shared];
+
+    [api setToken:@"your_package_token_here"];
+    [api setVer:@"1.0"];
+    [api setEN:YES];
+
+    [api loading:^{
+        NSLog(@"[APIKey] Initialized successfully");
+        // Your code here — menu loading, feature activation, etc.
+    }];
+}
+
+%end
+```
+
+### Basic Implementation (C Bridge)
+
+```objective-c
+// In your tweak.mm — no need to import PPAPIKey.h
+
+extern "C" void setTokenC(const char *token);
+extern "C" void setENC(int enable);
+extern "C" void setVerC(const char *ver);
+extern "C" void loadingC(void (^execute)(void));
+
+static void run_api(void)
+{
+    setTokenC("your_package_token_here");
+    setENC(0);       // 0 = Vietnamese
+    setVerC("1.0");
+
+    loadingC(^{
+        NSLog(@"[APIKey] Initialized successfully");
+    });
+}
+```
+
+### Retrieve Device Information
+
+```objective-c
+PPAPIKey *api = [PPAPIKey shared];
+
+NSString *key    = [api getDeviceKey];
+NSString *expire = [api getKeyExpire];
+NSString *amount = [api getKeyAmount];
+NSString *udid   = [api getDeviceID];
+NSString *bundle = [api getAppBundle];
+
+NSLog(@"Key: %@, Expires: %@, Quota: %@", key, expire, amount);
+NSLog(@"Device: %@, Bundle: %@", udid, bundle);
+```
+
+### Key Management
+
+```objective-c
+PPAPIKey *api = [PPAPIKey shared];
+
+// Copy key to clipboard
+[api copyKey];
+
+// Remove key (logout)
+[api exitKey];
+```
+
+### Full Tweak Template (tweak.mm)
+
+```objective-c
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#include <CoreFoundation/CoreFoundation.h>
+
+#import "PPAPIKey.h"
+
+extern "C" void setTokenC(const char *token);
+extern "C" void setENC(int enable);
+extern "C" void setVerC(const char *ver);
+extern "C" void loadingC(void (^execute)(void));
+
+// ---- Launch detection via CFNotificationCenter ----
+static void launch_callback(CFNotificationCenterRef __unused c,
+                            void *__unused o,
+                            CFStringRef __unused n,
+                            const void *__unused obj,
+                            CFDictionaryRef __unused ui)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        setTokenC("your_package_token_here");
+        setENC(0);
+        setVerC("1.0");
+        loadingC(^{
+            NSLog(@"[APIKey] Ready");
+        });
+    });
+}
+
+__attribute__((constructor))
+static void tweak_init(void)
+{
+    CFNotificationCenterAddObserver(
+        CFNotificationCenterGetLocalCenter(),
+        NULL,
+        launch_callback,
+        (CFStringRef)UIApplicationDidFinishLaunchingNotification,
+        NULL,
+        CFNotificationSuspensionBehaviorDeliverImmediately
+    );
+}
+```
+
+---
+
+## Library Variants
+
+| Variant   | File                  | Description                                                                                        |
+| --------- | --------------------- | -------------------------------------------------------------------------------------------------- |
+| **Full**  | `libPPAPIKey_full.a`  | Anti-Hex Protected — protects dylib at generation + protects during key validation. **VIP3 only.** |
+| **Basic** | `libPPAPIKey_basic.a` | Protects during key validation only. Lighter, available to all users.                              |
+
+---
+
+## Anti-Hex App
+
+We provide a dedicated Anti-Hex application available on 3 platforms (macOS, Windows, iOS) to help you secure your tweak:
+
+### Download
+
+- [PPAPIKey Hash Generator (zip)](https://ppapikey.xyz/PPAPIkeyHashGenerator.zip) — includes `PPAPIKey Hash Generator.dmg`, `PPAPIKey Hash Generator.ipa`, `PPHashGenerator.Windows-win-x64.zip`
+
+<div align="center">
+
+|            macOS             |              Windows               |            iOS             |
+| :--------------------------: | :--------------------------------: | :------------------------: |
+| ![macOS](AntiHexApp/MAC.png) | ![Windows](AntiHexApp/Windows.png) | ![iOS](AntiHexApp/iOS.png) |
+
+</div>
+
+### Workflow
+
+- **VIP3 User:** Can input the `Dylib` into the Tool, then execute **Anti-Hex Full**.
+- **VIP2 User (and below):** Can copy the **IDF** and **Signature** from the Tool, then access `Dashboard -> Package Hash` and add the Hash to execute **Anti-Hex Semi**.
+
+---
+
+## Themes
+
+The **Full** library ships **12 production UI themes**, configurable per package for HUD, enter-key, extension (UDID / update / skip), and toast surfaces.
+
+<div align="center">
+
+|                                          |                          |                                      |
+| :--------------------------------------: | :----------------------: | :----------------------------------: |
+|               **ANDROID**                |         **CST**          |              **GLASS**               |
+|     ![ANDROID](APITheme/ANDROID.png)     | ![CST](APITheme/CST.png) |     ![GLASS](APITheme/GLASS.png)     |
+|                **HACKER**                |          **JG**          |              **LINUX**               |
+|      ![HACKER](APITheme/HACKER.png)      |  ![JG](APITheme/JG.png)  |     ![LINUX](APITheme/LINUX.png)     |
+|                 **MAC**                  |         **MBP**          |            **MINECRAFT**             |
+|         ![MAC](APITheme/MAC.png)         | ![MBP](APITheme/MBP.png) | ![MINECRAFT](APITheme/MINECRAFT.png) |
+|             **NEWYEAR2026**              |         **SCL**          |                **XP**                |
+| ![NEWYEAR2026](APITheme/NEWYEAR2026.png) | ![SCL](APITheme/SCL.png) |        ![XP](APITheme/XP.png)        |
+
+</div>
+
+#### GLASS *(updated in 6.0.4)*
+
+Liquid Glass experience built on a full-screen ultra-thin blur. Enter Key, loading HUD, auto-alerts, Get UDID, and update/skip modals render **directly on the blurred app** — no opaque card chrome.
+
+| Element | Behavior |
+| ------- | -------- |
+| Enter Key | Transparent input field · purple gradient OK · Font Awesome action icons · countdown inline with moto (`moto - [seconds]`) |
+| Loading / Alert | Centered spinner or status icon · balanced text-to-countdown-bar spacing · Light/Dark adaptive typography |
+| Feedback | Haptic on interaction · no enter-key / UDID appearance sound |
+
+---
+
+## Support
+
+| Channel | Contact |
+| ------- | ------- |
+| **Developer portal** | [v5.ppapikey.xyz](https://v5.ppapikey.xyz) |
+| **Telegram** | [@pdp7803](https://t.me/pdp7803) |
+| **Email** | duyphatpham783@gmail.com |
+
+For package configuration, theme selection, and Anti-Hex setup, use the dashboard on the developer portal.
+
+---
+
+## License & Copyright
+
+```
+Copyright © 2024–2026 Phat Pham (@pdp7803). All rights reserved.
+```
+
+### Best Practices
+
+1. **Never commit** your package token to version control or public repositories.
+2. **Pin library versions** in production builds and test on target iOS versions before release.
+3. **Keep APIKey updated** to receive security patches and compatibility fixes.
+
+---
+
+## <a name="changelog"></a>Changelog
+
+<details open>
+<summary><strong>v6.0.4</strong> — Glass UI refinement & audio policy</summary>
+
+**Build:** `PPAPIKey 6.0.4B` · `PPAPIKey 6.0.4F`
+
+| Area | Changes |
+| ---- | ------- |
+| **UI · Glass** | Full-screen blur; direct-on-background layout; purple OK; FA icons; moto countdown; loading/alert spacing |
+| **Audio** | Removed `enterkey_showing` and `getudid_showing`; haptic retained |
+| **Docs** | Single canonical README |
+
+</details>
+
+<details>
+<summary><strong>v6.0.3</strong> — UDID system & PGAM enter-key</summary>
+
+**Build:** `PPAPIKey 6.0.3B` · `PPAPIKey 6.0.3F`
+
+> **Migration:** UDID/UUID system changed. **Clean reinstall** recommended when upgrading from earlier builds.
+
+| Area | Changes |
+| ---- | ------- |
+| **UI** | Dedicated Get UDID interface · **PGAM** enter-key theme |
+| **Audio** | Interface appearance sounds added |
+| **Security** | Anti-crack defense layer |
+| **Fix** | Overlay covering app screen on `.tipa` install · removed global background blur |
+
+</details>
+
+<details>
+<summary><strong>v6.0.2</strong> — Enter-key themes & performance</summary>
+
+**Build:** `PPAPIKey 6.0.2B` · `PPAPIKey 6.0.2F`
+
+- Redesigned enter-key and verification alerts across all themes
+- New enter-key engines: **UIAL** (native alert) and **GLASS** (Liquid Glass)
+- Fixed encryption-related CPU overheating
+- UUID/UDID retrieval bug fixes
+
+</details>
+
+<details>
+<summary><strong>v6.0.1</strong> — Per-theme HUD polish</summary>
+
+**Build:** `PPAPIKey 6.0.1B` · `PPAPIKey 6.0.1F`
+
+- **CST** — Accent bar respects card corner radius
+- **JG / MBP** — Logo-centered loading ring animation
+- **SCL** — Custom overlay HUD; seamless loading → alert transition
+- **Minecraft** — Pixel dim only; transparent text panels
+- **Glass** — Initial centered HUD card layout
+
+</details>
+
+<details>
+<summary><strong>v6.0.0</strong> — Major rewrite</summary>
+
+- Decoupled tweak / core architecture · C Bridge API
+- API rename: `shared`, `setToken:`, `getDeviceKey`, `getDeviceID`, …
+- Dual library (`basic` / `full`) · independent toast system
+- Minimum iOS **14.0** · **gnu++17**
+
+</details>
+
+---
 
 ---
 
 <div align="center">
 
-### Made with love by [Phat Pham](https://t.me/pdp7803)
+<br>
 
-**[Back to top](#apikey-60--customer-management-system)**
+**APIKey** · License Authentication Framework for iOS
+
+Developed by [Phat Pham](https://t.me/pdp7803) · [Portal](https://v5.ppapikey.xyz) · [Releases](https://github.com/pp7803/APIKey/releases)
+
+**[↑ Back to top](#apikey-60)**
 
 </div>
