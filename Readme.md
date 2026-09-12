@@ -56,7 +56,7 @@ Phiên bản **6.0** tái kiến trúc toàn bộ: tweak và thư viện lõi t�
 | **Kiến trúc module** | `tweak.mm` và core độc lập; API công khai ổn định |
 | **C Bridge** | `setTokenC`, `loadingC`, `packageData`, … cho codebase C/C++ |
 | **Hai tier thư viện** | `basic` (bảo vệ validate) và `full` (Anti-Hex + validate, VIP3) |
-| **12 theme UI** | HUD, nhập key, UDID, update/skip — cấu hình theo package |
+| **13 theme UI** | HUD, nhập key, UDID, update/skip — cấu hình theo package |
 | **Bảo mật** | Mã hóa transport, anti-tamper, fingerprint thiết bị |
 | **Đa ngôn ngữ** | Tiếng Anh và Tiếng Việt tích hợp sẵn |
 
@@ -88,7 +88,7 @@ Phiên bản **6.0** tái kiến trúc toàn bộ: tweak và thư viện lõi t�
 | **Thiết bị** | Gắn UDID, device key, bundle ID, package data lên server |
 | **Tích hợp** | API Objective-C + C Bridge · tweak/core tách qua `PPAPIKey.h` |
 | **Phân phối** | `libPPAPIKey_basic.a` (mọi tier) · `libPPAPIKey_full.a` (VIP3, Anti-Hex) |
-| **UX** | 12 theme · UI song ngữ · toast · haptic |
+| **UX** | 13 theme · UI song ngữ · toast · haptic |
 
 ---
 
@@ -406,7 +406,7 @@ Chúng tôi cung cấp ứng dụng Anti-Hex chuyên dụng trên 3 nền tảng
 
 ## <a name="chủ-đề-vi"></a>Chủ Đề
 
-Thư viện **Full** cung cấp **12 theme UI production**, cấu hình theo package cho HUD, nhập key, extension (UDID / update / skip) và toast.
+Thư viện **Full** cung cấp **13 theme UI production**, cấu hình theo package cho HUD, nhập key, extension (UDID / update / skip) và toast.
 
 <div align="center">
 
@@ -420,8 +420,14 @@ Thư viện **Full** cung cấp **12 theme UI production**, cấu hình theo pac
 |         ![MAC](APITheme/MAC.png)         | ![MBP](APITheme/MBP.png) | ![MINECRAFT](APITheme/MINECRAFT.png) |
 |             **NEWYEAR2026**              |         **SCL**          |                **XP**                |
 | ![NEWYEAR2026](APITheme/NEWYEAR2026.png) | ![SCL](APITheme/SCL.png) |        ![XP](APITheme/XP.png)        |
+|                 **PGAM**                 |                          |                                      |
+|        ![PGAM](APITheme/PGAM.png)        |                          |                                      |
 
 </div>
+
+#### PGAM
+
+Giao diện nhập key phong cách gaming hiện đại, bố cục nổi bật và tối ưu cho thao tác nhanh trên thiết bị di động.
 
 #### GLASS *(cập nhật 6.0.4)*
 
@@ -569,7 +575,7 @@ Version **6.0** re-architected the stack: the tweak entry point and core library
 | **Modular architecture** | Tweak (`tweak.mm`) and core library are independent; stable public API surface |
 | **C Bridge** | `setTokenC`, `loadingC`, `packageData`, … for C/C++ codebases |
 | **Dual library tiers** | `basic` (validation protection) and `full` (Anti-Hex + validation, VIP3) |
-| **12 UI themes** | HUD, enter-key, UDID, update/skip flows — configurable per package |
+| **13 UI themes** | HUD, enter-key, UDID, update/skip flows — configurable per package |
 | **Security** | Encrypted transport, anti-tamper, device fingerprinting |
 | **Localization** | Built-in English and Vietnamese |
 
@@ -601,7 +607,7 @@ Version **6.0** re-architected the stack: the tweak entry point and core library
 | **Device** | UDID binding, device key, bundle ID, server-side package data |
 | **Integration** | Objective-C API + C Bridge · decoupled tweak/core via `PPAPIKey.h` |
 | **Distribution** | `libPPAPIKey_basic.a` (all tiers) · `libPPAPIKey_full.a` (VIP3, Anti-Hex) |
-| **UX** | 12 themes · bilingual UI · toast · haptic feedback |
+| **UX** | 13 themes · bilingual UI · toast · haptic feedback |
 
 ---
 
@@ -919,7 +925,7 @@ We provide a dedicated Anti-Hex application available on 3 platforms (macOS, Win
 
 ## Themes
 
-The **Full** library ships **12 production UI themes**, configurable per package for HUD, enter-key, extension (UDID / update / skip), and toast surfaces.
+The **Full** library ships **13 production UI themes**, configurable per package for HUD, enter-key, extension (UDID / update / skip), and toast surfaces.
 
 <div align="center">
 
@@ -933,8 +939,14 @@ The **Full** library ships **12 production UI themes**, configurable per package
 |         ![MAC](APITheme/MAC.png)         | ![MBP](APITheme/MBP.png) | ![MINECRAFT](APITheme/MINECRAFT.png) |
 |             **NEWYEAR2026**              |         **SCL**          |                **XP**                |
 | ![NEWYEAR2026](APITheme/NEWYEAR2026.png) | ![SCL](APITheme/SCL.png) |        ![XP](APITheme/XP.png)        |
+|                 **PGAM**                 |                          |                                      |
+|        ![PGAM](APITheme/PGAM.png)        |                          |                                      |
 
 </div>
+
+#### PGAM
+
+A modern gaming-style enter-key interface with a distinctive layout optimized for fast interaction on mobile devices.
 
 #### GLASS *(updated in 6.0.4)*
 
