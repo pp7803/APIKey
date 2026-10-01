@@ -4,7 +4,7 @@
 
 **Enterprise-grade license authentication & customer management for iOS tweaks**
 
-[![Version](https://img.shields.io/badge/release-6.0.4-2563EB?style=flat-square)](https://github.com/pp7803/APIKey/releases)
+[![Version](https://img.shields.io/badge/release-6.0.5-2563EB?style=flat-square)](https://github.com/pp7803/APIKey/releases)
 [![Platform](https://img.shields.io/badge/iOS-14.0%2B-lightgrey?style=flat-square)](https://www.apple.com/ios)
 [![Architecture](https://img.shields.io/badge/arch-arm64-blue?style=flat-square)]()
 [![License](https://img.shields.io/badge/license-Proprietary-red?style=flat-square)](LICENSE)
@@ -24,22 +24,18 @@
 |---|---|
 | Bắt đầu | [Tổng quan](#tổng-quan-vi) · [Yêu cầu](#yêu-cầu-hệ-thống-vi) · [Cài đặt](#cài-đặt-vi) · [Cấu hình](#cấu-hình-vi) |
 | Tích hợp | [API](#tài-liệu-api-vi) · [C Bridge](#c-bridge-api-vi) · [Ví dụ](#ví-dụ-sử-dụng-vi) · [Thư viện](#biến-thể-thư-viện) |
-| Sản phẩm | [Phát hành 6.0.4](#phát-hành-604) · [Chủ đề](#chủ-đề-vi) · [Anti-Hex](#ứng-dụng-anti-hex) · [Changelog](#lịch-sử-thay-đổi) |
+| Sản phẩm | [Phát hành 6.0.5](#phát-hành-605) · [Chủ đề](#chủ-đề-vi) · [Anti-Hex](#ứng-dụng-anti-hex) · [Changelog](#lịch-sử-thay-đổi) |
 | Hỗ trợ | [Liên hệ](#hỗ-trợ-vi) · [Giấy phép](#giấy-phép--bản-quyền) |
 
 ---
 
-## <a name="phát-hành-604"></a>Phát Hành 6.0.4
+## <a name="phát-hành-605"></a>Phát Hành 6.0.5
 
-> **Mã build:** `PPAPIKey 6.0.4B` (Basic) · `PPAPIKey 6.0.4F` (Full)
->
-> **Lưu ý khi nâng cấp:** Khuyến nghị **gỡ phiên bản cũ và cài lại sạch** khi chuyển sang `6.0.4`, vì phiên bản này sử dụng cơ chế Keychain và lưu trữ định danh mới. Cài đè có thể giữ lại dữ liệu Keychain cũ, gây xung đột thiết bị hoặc trạng thái key.
+> **Mã build:** `PPAPIKey 6.0.5B` (Basic) · `PPAPIKey 6.0.5F` (Full)
 
 | Hạng mục | Tóm tắt |
 | -------- | ------- |
-| **Giao diện Glass** | Blur fullscreen siêu mỏng; nội dung hiển thị trực tiếp trên nền app — không card đục. Nhập key: ô trong suốt, nút OK tím, icon Font Awesome, bộ đếm nối moto (`moto - [giây]`). Tăng khoảng cách chữ ↔ thanh countdown trên loading/alert. Typography thích ứng Light/Dark. |
-| **Âm thanh** | Gỡ âm thanh khi mở Enter Key và Get UDID. Giữ haptic. Âm loading và alert auto không đổi. |
-| **Tài liệu** | Gom release notes vào README này; xoá README khách hàng trùng lặp. |
+| **Sửa lỗi UI** | • **Căn giữa Loading HUD:** Khắc phục triệt để lỗi vòng xoay loading (JGProgressHUD) bị dạt góc / lệch tâm khi bật chế độ ẩn quay màn hình (`pp_isHide = ON`) do trễ nhịp layout của UIKit secure canvas.<br>• **Xử lý Dim Background:** Gỡ bỏ sạch lớp mờ nền trước khi chuyển đổi modal (như sang Get UDID), giải quyết lỗi màn hình bị tối đè và liệt cảm ứng thao tác nút.<br>• **Chống đè Modal Offline:** Thêm cờ khóa luồng khi hộp thoại offline đang hiển thị, tránh việc host app tự động retry làm hiện đè HUD/UDID alert lên trên.<br>• **Tránh chớp tắt Device Info:** Tối ưu nhịp hiển thị Device UDID / IDFV (UUID) đầy đủ, mượt mà trước khi chuyển tiếp sang giao diện nhập key hoặc kiểm tra bản quyền. |
 
 ---
 
@@ -470,6 +466,17 @@ Copyright © 2024–2026 Phát Phạm (@pdp7803). All rights reserved.
 ## <a name="lịch-sử-thay-đổi"></a>Lịch Sử Thay Đổi
 
 <details open>
+<summary><strong>v6.0.5</strong> — Sửa lỗi giao diện (Fix bug UI)</summary>
+
+**Build:** `PPAPIKey 6.0.5B` · `PPAPIKey 6.0.5F`
+
+| Hạng mục | Thay đổi |
+| -------- | -------- |
+| **Sửa lỗi UI** | Căn giữa Loading HUD khi bật `pp_isHide = ON`; dọn sạch dim background tránh liệt cảm ứng nút khi chuyển modal; chống đè modal offline khi host retry; loại bỏ hiện tượng chớp tắt loading thông tin thiết bị |
+
+</details>
+
+<details>
 <summary><strong>v6.0.4</strong> — Tinh chỉnh Glass UI & chính sách âm thanh</summary>
 
 **Build:** `PPAPIKey 6.0.4B` · `PPAPIKey 6.0.4F`
@@ -543,22 +550,18 @@ Copyright © 2024–2026 Phát Phạm (@pdp7803). All rights reserved.
 |---|---|
 | Getting started | [Overview](#overview) · [Requirements](#requirements) · [Installation](#installation) · [Configuration](#configuration) |
 | Integration | [API Reference](#api-reference) · [C Bridge](#c-bridge-api) · [Examples](#usage-examples) · [Library Variants](#library-variants) |
-| Product | [Release 6.0.4](#release-604) · [Themes](#themes) · [Anti-Hex](#anti-hex-app) · [Changelog](#changelog) |
+| Product | [Release 6.0.5](#release-605) · [Themes](#themes) · [Anti-Hex](#anti-hex-app) · [Changelog](#changelog) |
 | Support | [Contact](#support) · [License](#license--copyright) |
 
 ---
 
-## <a name="release-604"></a>Release 6.0.4
+## <a name="release-605"></a>Release 6.0.5
 
-> **Build identifiers:** `PPAPIKey 6.0.4B` (Basic) · `PPAPIKey 6.0.4F` (Full)
->
-> **Upgrade notice:** A **clean reinstall is recommended** when upgrading to `6.0.4`, because this release uses a new Keychain and device-identity storage mechanism. Installing over an older version may retain legacy Keychain data and cause device-binding or key-state conflicts.
+> **Build identifiers:** `PPAPIKey 6.0.5B` (Basic) · `PPAPIKey 6.0.5F` (Full)
 
 | Category | Summary |
 | -------- | ------- |
-| **Glass UI** | Full-screen ultra-thin blur; content renders directly on the app background — no opaque card. Enter Key uses a transparent field, purple OK button, Font Awesome icons, and inline countdown (`moto - [seconds]`). Improved spacing on loading and auto-alert HUDs. Light/Dark adaptive typography. |
-| **Audio** | Removed enter-key and Get UDID appearance sounds. Haptic feedback retained. Loading and auto-alert audio unchanged. |
-| **Documentation** | Consolidated release notes into this README; removed duplicate customer README. |
+| **UI Bug Fixes** | • **Centered Loading HUD:** Fixed loading HUD (JGProgressHUD) misplacement when screen recording protection is enabled (`pp_isHide = ON`) by scheduling a re-center on the subsequent runloop pass.<br>• **Dim Background Clean-up:** Fully removed residual dim background layers before modal transitions (e.g. into Get UDID), preventing unresponsive touch controls and black screen overlays.<br>• **Prevent Offline Modal Collisions:** Added an active state guard to prevent redundant host app retries from stacking loading/UDID alerts over active offline dialogs.<br>• **Device Info Stability:** Guaranteed a complete presentation duration for Device UDID / IDFV (UUID) loading, preventing abrupt flashing or premature dismissals. |
 
 ---
 
@@ -989,6 +992,17 @@ Copyright © 2024–2026 Phat Pham (@pdp7803). All rights reserved.
 ## <a name="changelog"></a>Changelog
 
 <details open>
+<summary><strong>v6.0.5</strong> — UI Bug Fixes</summary>
+
+**Build:** `PPAPIKey 6.0.5B` · `PPAPIKey 6.0.5F`
+
+| Area | Changes |
+| ---- | ------- |
+| **UI Fixes** | Re-centered Loading HUD under `pp_isHide`; resolved dim background leak blocking touches on modal transition; fixed offline dialog collisions; eliminated device info alert flickering |
+
+</details>
+
+<details>
 <summary><strong>v6.0.4</strong> — Glass UI refinement & audio policy</summary>
 
 **Build:** `PPAPIKey 6.0.4B` · `PPAPIKey 6.0.4F`
