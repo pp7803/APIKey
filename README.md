@@ -1,10 +1,10 @@
 <div align="center">
 
-# APIKey 6.0
+# APIKey 6.1
 
 **Enterprise-grade license authentication & customer management for iOS tweaks**
 
-[![Version](https://img.shields.io/badge/release-6.0.5-2563EB?style=flat-square)](https://github.com/pp7803/APIKey/releases)
+[![Version](https://img.shields.io/badge/release-6.1.0-2563EB?style=flat-square)](https://github.com/pp7803/APIKey/releases)
 [![Platform](https://img.shields.io/badge/iOS-14.0%2B-lightgrey?style=flat-square)](https://www.apple.com/ios)
 [![Architecture](https://img.shields.io/badge/arch-arm64-blue?style=flat-square)]()
 [![License](https://img.shields.io/badge/license-Proprietary-red?style=flat-square)](LICENSE)
@@ -24,18 +24,23 @@
 |---|---|
 | Bắt đầu | [Tổng quan](#tổng-quan-vi) · [Yêu cầu](#yêu-cầu-hệ-thống-vi) · [Cài đặt](#cài-đặt-vi) · [Cấu hình](#cấu-hình-vi) |
 | Tích hợp | [API](#tài-liệu-api-vi) · [C Bridge](#c-bridge-api-vi) · [Ví dụ](#ví-dụ-sử-dụng-vi) · [Thư viện](#biến-thể-thư-viện) |
-| Sản phẩm | [Phát hành 6.0.5](#phát-hành-605) · [Chủ đề](#chủ-đề-vi) · [Anti-Hex](#ứng-dụng-anti-hex) · [Changelog](#lịch-sử-thay-đổi) |
+| Sản phẩm | [Phát hành 6.1.0](#phát-hành-610) · [Chủ đề](#chủ-đề-vi) · [Anti-Hex](#ứng-dụng-anti-hex) · [Changelog](#lịch-sử-thay-đổi) |
 | Hỗ trợ | [Liên hệ](#hỗ-trợ-vi) · [Giấy phép](#giấy-phép--bản-quyền) |
 
 ---
 
-## <a name="phát-hành-605"></a>Phát Hành 6.0.5
+## <a name="phát-hành-610"></a>Phát Hành 6.1.0
 
-> **Mã build:** `PPAPIKey 6.0.5B` (Basic) · `PPAPIKey 6.0.5F` (Full)
+> **Bốn lựa chọn:** `6.1.0B` · `6.1.0F` · `6.1.0BC` · `6.1.0FC`
 
 | Hạng mục | Tóm tắt |
 | -------- | ------- |
-| **Sửa lỗi UI** | • **Căn giữa Loading HUD:** Khắc phục triệt để lỗi vòng xoay loading (JGProgressHUD) bị dạt góc / lệch tâm khi bật chế độ ẩn quay màn hình (`pp_isHide = ON`) do trễ nhịp layout của UIKit secure canvas.<br>• **Xử lý Dim Background:** Gỡ bỏ sạch lớp mờ nền trước khi chuyển đổi modal (như sang Get UDID), giải quyết lỗi màn hình bị tối đè và liệt cảm ứng thao tác nút.<br>• **Chống đè Modal Offline:** Thêm cờ khóa luồng khi hộp thoại offline đang hiển thị, tránh việc host app tự động retry làm hiện đè HUD/UDID alert lên trên.<br>• **Tránh chớp tắt Device Info:** Tối ưu nhịp hiển thị Device UDID / IDFV (UUID) đầy đủ, mượt mà trước khi chuyển tiếp sang giao diện nhập key hoặc kiểm tra bản quyền. |
+| **Giao diện theme** | Hoàn thiện ba nhóm giao diện riêng: **Check Key**, **Enter Key** và **Extension**. Mỗi nhóm có thể chọn theme phù hợp với package. |
+| **13 phong cách** | Làm mới giao diện trên toàn bộ 13 theme; cải thiện màu sắc, Dark Mode, bố cục, hiệu ứng nền và khả năng hiển thị trên nhiều kích thước màn hình. |
+| **Bản Custom** | Bổ sung `BC` và `FC` bên cạnh hai bản tiêu chuẩn `B` và `F`, phù hợp với gói tùy chỉnh dành riêng cho khách hàng. |
+| **Ổn định trải nghiệm** | Cải thiện chuyển cảnh loading, nhập key, Get UDID, cập nhật và thông báo kết quả; giảm lỗi lớp nền che màn hình hoặc cản thao tác. |
+
+`B` là **Basic**, `F` là **Full**, còn hậu tố `C` là bản **Custom/Customer**.
 
 ---
 
@@ -370,10 +375,14 @@ static void tweak_init(void)
 
 ## Biến Thể Thư Viện
 
-| Biến Thể  | File                  | Mô Tả                                                                                                |
-| --------- | --------------------- | ---------------------------------------------------------------------------------------------------- |
-| **Full**  | `libPPAPIKey_full.a`  | Anti-Hex Protected — bảo vệ dylib khi được sinh ra + bảo vệ khi kiểm tra key. **Chỉ dành cho VIP3.** |
-| **Basic** | `libPPAPIKey_basic.a` | Chỉ bảo vệ khi kiểm tra key. Nhẹ hơn, dành cho mọi người dùng.                                       |
+| Mã | Phiên bản | File | Phù hợp với |
+| -- | --------- | ---- | ----------- |
+| **B** | Basic tiêu chuẩn | `libPPAPIKey_basic.a` | Nhu cầu thông thường, gọn nhẹ và dễ tích hợp. |
+| **F** | Full tiêu chuẩn | `libPPAPIKey_full.a` | Gói đầy đủ, có lớp bảo vệ Anti-Hex dành cho VIP3. |
+| **BC** | Basic Custom | `libPPAPIKey_custom_basic.a` | Gói Basic được chuẩn bị riêng theo nhu cầu khách hàng. |
+| **FC** | Full Custom | `libPPAPIKey_custom_full.a` | Gói Full được chuẩn bị riêng theo nhu cầu khách hàng. |
+
+Hai bản `BC` và `FC` chỉ khác ở cấu hình dành riêng cho khách hàng; cách sử dụng API vẫn thống nhất với bản tiêu chuẩn tương ứng.
 
 ---
 
@@ -402,38 +411,61 @@ Chúng tôi cung cấp ứng dụng Anti-Hex chuyên dụng trên 3 nền tảng
 
 ## <a name="chủ-đề-vi"></a>Chủ Đề
 
-Thư viện **Full** cung cấp **13 theme UI production**, cấu hình theo package cho HUD, nhập key, extension (UDID / update / skip) và toast.
+APIKey 6.1.0 chia giao diện thành ba nhóm độc lập. Có thể chọn cùng một theme cho cả ba nhóm hoặc phối theme khác nhau theo package.
+
+| Nhóm | Hiển thị ở đâu | Lựa chọn |
+| ---- | ------------- | -------- |
+| **CHECKKEY** | Loading, trạng thái kiểm tra key và thông báo kết quả | 13 theme |
+| **ENTERKEY** | Màn hình nhập và gửi license key | 13 theme + giao diện UIKit (`UIAL`) |
+| **EXTENSION** | Get UDID, thông báo cập nhật và xác nhận bỏ qua | 13 theme |
+
+Các theme chung gồm: `ANDROID`, `CST`, `GLASS`, `HACKER`, `JG`, `LINUX`, `MAC`, `MBP`, `MINECRAFT`, `NEWYEAR2026`, `PGAM`, `SCL` và `XP`.
+
+### CHECKKEY
 
 <div align="center">
 
-|                                          |                          |                                      |
-| :--------------------------------------: | :----------------------: | :----------------------------------: |
-|               **ANDROID**                |         **CST**          |              **GLASS**               |
-|     ![ANDROID](APITheme/ANDROID.png)     | ![CST](APITheme/CST.png) |     ![GLASS](APITheme/GLASS.png)     |
-|                **HACKER**                |          **JG**          |              **LINUX**               |
-|      ![HACKER](APITheme/HACKER.png)      |  ![JG](APITheme/JG.png)  |     ![LINUX](APITheme/LINUX.png)     |
-|                 **MAC**                  |         **MBP**          |            **MINECRAFT**             |
-|         ![MAC](APITheme/MAC.png)         | ![MBP](APITheme/MBP.png) | ![MINECRAFT](APITheme/MINECRAFT.png) |
-|             **NEWYEAR2026**              |         **SCL**          |                **XP**                |
-| ![NEWYEAR2026](APITheme/NEWYEAR2026.png) | ![SCL](APITheme/SCL.png) |        ![XP](APITheme/XP.png)        |
-|                 **PGAM**                 |                          |                                      |
-|        ![PGAM](APITheme/PGAM.png)        |                          |                                      |
+| | | |
+| :---: | :---: | :---: |
+| **ANDROID**<br>![ANDROID Check Key](APITheme/CHECKKEY/ANDROID.png) | **CST**<br>![CST Check Key](APITheme/CHECKKEY/CST.png) | **GLASS**<br>![GLASS Check Key](APITheme/CHECKKEY/GLASS.png) |
+| **HACKER**<br>![HACKER Check Key](APITheme/CHECKKEY/HACKER.png) | **JG**<br>![JG Check Key](APITheme/CHECKKEY/JG.png) | **LINUX**<br>![LINUX Check Key](APITheme/CHECKKEY/LINUX.png) |
+| **MAC**<br>![MAC Check Key](APITheme/CHECKKEY/MAC.png) | **MBP**<br>![MBP Check Key](APITheme/CHECKKEY/MBP.png) | **MINECRAFT**<br>![MINECRAFT Check Key](APITheme/CHECKKEY/MINECRAFT.png) |
+| **NEWYEAR2026**<br>![NEWYEAR2026 Check Key](APITheme/CHECKKEY/NEWYEAR2026.png) | **PGAM**<br>![PGAM Check Key](APITheme/CHECKKEY/PGAM.png) | **SCL**<br>![SCL Check Key](APITheme/CHECKKEY/SCL.png) |
+| **XP**<br>![XP Check Key](APITheme/CHECKKEY/XP.png) | | |
 
 </div>
 
-#### PGAM
+### ENTERKEY
 
-Giao diện nhập key phong cách gaming hiện đại, bố cục nổi bật và tối ưu cho thao tác nhanh trên thiết bị di động.
+Ngoài 13 theme chung, nhóm Enter Key có thêm `UIAL` — giao diện nhập key quen thuộc của iOS. Ảnh minh họa được đặt tên `UIKIT.PNG`.
 
-#### GLASS *(cập nhật 6.0.4)*
+<div align="center">
 
-Trải nghiệm Liquid Glass trên blur fullscreen siêu mỏng. Nhập key, loading HUD, alert auto, Get UDID và modal update/skip hiển thị **trực tiếp trên nền app mờ** — không card đục.
+| | | |
+| :---: | :---: | :---: |
+| **ANDROID**<br>![ANDROID Enter Key](APITheme/ENTERKEY/ANDROID.PNG) | **CST**<br>![CST Enter Key](APITheme/ENTERKEY/CST.PNG) | **GLASS**<br>![GLASS Enter Key](APITheme/ENTERKEY/GLASS.PNG) |
+| **HACKER**<br>![HACKER Enter Key](APITheme/ENTERKEY/HACKER.PNG) | **JG**<br>![JG Enter Key](APITheme/ENTERKEY/JG.PNG) | **LINUX**<br>![LINUX Enter Key](APITheme/ENTERKEY/LINUX.PNG) |
+| **MAC**<br>![MAC Enter Key](APITheme/ENTERKEY/MAC.PNG) | **MBP**<br>![MBP Enter Key](APITheme/ENTERKEY/MBP.PNG) | **MINECRAFT**<br>![MINECRAFT Enter Key](APITheme/ENTERKEY/MINECRAFT.PNG) |
+| **NEWYEAR2026**<br>![NEWYEAR2026 Enter Key](APITheme/ENTERKEY/NEWYEAR2026.PNG) | **PGAM**<br>![PGAM Enter Key](APITheme/ENTERKEY/PGAM.PNG) | **SCL**<br>![SCL Enter Key](APITheme/ENTERKEY/SCL.PNG) |
+| **XP**<br>![XP Enter Key](APITheme/ENTERKEY/XP.PNG) | **UIAL / UIKit**<br>![UIKit Enter Key](APITheme/ENTERKEY/UIKIT.PNG) | |
 
-| Thành phần | Hành vi |
-| ---------- | ------- |
-| Nhập key | Ô trong suốt · OK gradient tím · icon Font Awesome · countdown inline với moto (`moto - [giây]`) |
-| Loading / Alert | Spinner/icon căn giữa · khoảng cách chữ ↔ thanh countdown cân đối · typography Light/Dark |
-| Phản hồi | Haptic khi tương tác · không phát âm thanh enter-key / UDID |
+</div>
+
+### EXTENSION
+
+Extension dùng cho Get UDID, màn hình cập nhật và xác nhận bỏ qua. Nếu không chọn riêng, nhóm này sẽ dùng theo theme Check Key.
+
+<div align="center">
+
+| | | |
+| :---: | :---: | :---: |
+| **ANDROID**<br>![ANDROID Extension](APITheme/EXTENSION/ANDROID.PNG) | **CST**<br>![CST Extension](APITheme/EXTENSION/CST.PNG) | **GLASS**<br>![GLASS Extension](APITheme/EXTENSION/GLASS.PNG) |
+| **HACKER**<br>![HACKER Extension](APITheme/EXTENSION/HACKER.PNG) | **JG**<br>![JG Extension](APITheme/EXTENSION/JG.PNG) | **LINUX**<br>![LINUX Extension](APITheme/EXTENSION/LINUX.PNG) |
+| **MAC**<br>![MAC Extension](APITheme/EXTENSION/MAC.PNG) | **MBP**<br>![MBP Extension](APITheme/EXTENSION/MBP.PNG) | **MINECRAFT**<br>![MINECRAFT Extension](APITheme/EXTENSION/MINECRAFT.PNG) |
+| **NEWYEAR2026**<br>![NEWYEAR2026 Extension](APITheme/EXTENSION/NEWYEAR2026.PNG) | **PGAM**<br>![PGAM Extension](APITheme/EXTENSION/PGAM.PNG) | **SCL**<br>![SCL Extension](APITheme/EXTENSION/SCL.PNG) |
+| **XP**<br>![XP Extension](APITheme/EXTENSION/XP.PNG) | | |
+
+</div>
 
 ---
 
@@ -466,6 +498,20 @@ Copyright © 2024–2026 Phát Phạm (@pdp7803). All rights reserved.
 ## <a name="lịch-sử-thay-đổi"></a>Lịch Sử Thay Đổi
 
 <details open>
+<summary><strong>v6.1.0</strong> — Theme đầy đủ & bản Custom</summary>
+
+**Build:** `PPAPIKey 6.1.0B` · `PPAPIKey 6.1.0F` · `PPAPIKey 6.1.0BC` · `PPAPIKey 6.1.0FC`
+
+| Hạng mục | Thay đổi |
+| -------- | -------- |
+| **Theme** | Hoàn thiện ba nhóm Check Key, Enter Key và Extension cho 13 phong cách; Enter Key có thêm lựa chọn UIKit (`UIAL`) |
+| **Giao diện** | Làm mới bố cục, hiệu ứng nền, góc card, màu Dark Mode và khả năng hiển thị trên nhiều màn hình |
+| **Phân phối** | Thêm bản Basic Custom (`BC`) và Full Custom (`FC`) bên cạnh Basic (`B`) và Full (`F`) tiêu chuẩn |
+| **Ổn định** | Cải thiện chuyển tiếp giữa loading, Get UDID, nhập key, cập nhật và thông báo kết quả |
+
+</details>
+
+<details>
 <summary><strong>v6.0.5</strong> — Sửa lỗi giao diện (Fix bug UI)</summary>
 
 **Build:** `PPAPIKey 6.0.5B` · `PPAPIKey 6.0.5F`
@@ -550,18 +596,23 @@ Copyright © 2024–2026 Phát Phạm (@pdp7803). All rights reserved.
 |---|---|
 | Getting started | [Overview](#overview) · [Requirements](#requirements) · [Installation](#installation) · [Configuration](#configuration) |
 | Integration | [API Reference](#api-reference) · [C Bridge](#c-bridge-api) · [Examples](#usage-examples) · [Library Variants](#library-variants) |
-| Product | [Release 6.0.5](#release-605) · [Themes](#themes) · [Anti-Hex](#anti-hex-app) · [Changelog](#changelog) |
+| Product | [Release 6.1.0](#release-610) · [Themes](#themes) · [Anti-Hex](#anti-hex-app) · [Changelog](#changelog) |
 | Support | [Contact](#support) · [License](#license--copyright) |
 
 ---
 
-## <a name="release-605"></a>Release 6.0.5
+## <a name="release-610"></a>Release 6.1.0
 
-> **Build identifiers:** `PPAPIKey 6.0.5B` (Basic) · `PPAPIKey 6.0.5F` (Full)
+> **Four options:** `6.1.0B` · `6.1.0F` · `6.1.0BC` · `6.1.0FC`
 
 | Category | Summary |
 | -------- | ------- |
-| **UI Bug Fixes** | • **Centered Loading HUD:** Fixed loading HUD (JGProgressHUD) misplacement when screen recording protection is enabled (`pp_isHide = ON`) by scheduling a re-center on the subsequent runloop pass.<br>• **Dim Background Clean-up:** Fully removed residual dim background layers before modal transitions (e.g. into Get UDID), preventing unresponsive touch controls and black screen overlays.<br>• **Prevent Offline Modal Collisions:** Added an active state guard to prevent redundant host app retries from stacking loading/UDID alerts over active offline dialogs.<br>• **Device Info Stability:** Guaranteed a complete presentation duration for Device UDID / IDFV (UUID) loading, preventing abrupt flashing or premature dismissals. |
+| **Theme interface** | Three separate theme groups are now complete: **Key Check**, **Enter Key**, and **Extension**. Each group can use the style selected for the package. |
+| **13 styles** | Refreshed all 13 themes with improved colors, Dark Mode, layouts, backgrounds, and support for different screen sizes. |
+| **Custom builds** | Added `BC` and `FC` alongside the standard `B` and `F` builds for customer-specific packages. |
+| **Smoother flow** | Improved transitions between loading, key entry, Get UDID, update prompts, and result messages. |
+
+`B` means **Basic**, `F` means **Full**, and the `C` suffix identifies a **Custom/Customer** build.
 
 ---
 
@@ -896,10 +947,14 @@ static void tweak_init(void)
 
 ## Library Variants
 
-| Variant   | File                  | Description                                                                                        |
-| --------- | --------------------- | -------------------------------------------------------------------------------------------------- |
-| **Full**  | `libPPAPIKey_full.a`  | Anti-Hex Protected — protects dylib at generation + protects during key validation. **VIP3 only.** |
-| **Basic** | `libPPAPIKey_basic.a` | Protects during key validation only. Lighter, available to all users.                              |
+| Code | Edition | File | Best for |
+| ---- | ------- | ---- | -------- |
+| **B** | Standard Basic | `libPPAPIKey_basic.a` | Regular use with a smaller, straightforward package. |
+| **F** | Standard Full | `libPPAPIKey_full.a` | The complete package with Anti-Hex protection for VIP3. |
+| **BC** | Custom Basic | `libPPAPIKey_custom_basic.a` | A Basic package prepared for a customer's specific needs. |
+| **FC** | Custom Full | `libPPAPIKey_custom_full.a` | A Full package prepared for a customer's specific needs. |
+
+`BC` and `FC` use customer-specific settings while keeping the same API usage as their matching standard editions.
 
 ---
 
@@ -928,38 +983,61 @@ We provide a dedicated Anti-Hex application available on 3 platforms (macOS, Win
 
 ## Themes
 
-The **Full** library ships **13 production UI themes**, configurable per package for HUD, enter-key, extension (UDID / update / skip), and toast surfaces.
+APIKey 6.1.0 separates its interface into three theme groups. A package may use one style everywhere or choose a different style for each group.
+
+| Group | Where it appears | Options |
+| ----- | ---------------- | ------- |
+| **CHECKKEY** | Loading, key verification status, and result messages | 13 themes |
+| **ENTERKEY** | License-key entry and submission screen | 13 themes + native UIKit (`UIAL`) |
+| **EXTENSION** | Get UDID, update prompts, and skip confirmation | 13 themes |
+
+Shared themes: `ANDROID`, `CST`, `GLASS`, `HACKER`, `JG`, `LINUX`, `MAC`, `MBP`, `MINECRAFT`, `NEWYEAR2026`, `PGAM`, `SCL`, and `XP`.
+
+### CHECKKEY
 
 <div align="center">
 
-|                                          |                          |                                      |
-| :--------------------------------------: | :----------------------: | :----------------------------------: |
-|               **ANDROID**                |         **CST**          |              **GLASS**               |
-|     ![ANDROID](APITheme/ANDROID.png)     | ![CST](APITheme/CST.png) |     ![GLASS](APITheme/GLASS.png)     |
-|                **HACKER**                |          **JG**          |              **LINUX**               |
-|      ![HACKER](APITheme/HACKER.png)      |  ![JG](APITheme/JG.png)  |     ![LINUX](APITheme/LINUX.png)     |
-|                 **MAC**                  |         **MBP**          |            **MINECRAFT**             |
-|         ![MAC](APITheme/MAC.png)         | ![MBP](APITheme/MBP.png) | ![MINECRAFT](APITheme/MINECRAFT.png) |
-|             **NEWYEAR2026**              |         **SCL**          |                **XP**                |
-| ![NEWYEAR2026](APITheme/NEWYEAR2026.png) | ![SCL](APITheme/SCL.png) |        ![XP](APITheme/XP.png)        |
-|                 **PGAM**                 |                          |                                      |
-|        ![PGAM](APITheme/PGAM.png)        |                          |                                      |
+| | | |
+| :---: | :---: | :---: |
+| **ANDROID**<br>![ANDROID Check Key](APITheme/CHECKKEY/ANDROID.png) | **CST**<br>![CST Check Key](APITheme/CHECKKEY/CST.png) | **GLASS**<br>![GLASS Check Key](APITheme/CHECKKEY/GLASS.png) |
+| **HACKER**<br>![HACKER Check Key](APITheme/CHECKKEY/HACKER.png) | **JG**<br>![JG Check Key](APITheme/CHECKKEY/JG.png) | **LINUX**<br>![LINUX Check Key](APITheme/CHECKKEY/LINUX.png) |
+| **MAC**<br>![MAC Check Key](APITheme/CHECKKEY/MAC.png) | **MBP**<br>![MBP Check Key](APITheme/CHECKKEY/MBP.png) | **MINECRAFT**<br>![MINECRAFT Check Key](APITheme/CHECKKEY/MINECRAFT.png) |
+| **NEWYEAR2026**<br>![NEWYEAR2026 Check Key](APITheme/CHECKKEY/NEWYEAR2026.png) | **PGAM**<br>![PGAM Check Key](APITheme/CHECKKEY/PGAM.png) | **SCL**<br>![SCL Check Key](APITheme/CHECKKEY/SCL.png) |
+| **XP**<br>![XP Check Key](APITheme/CHECKKEY/XP.png) | | |
 
 </div>
 
-#### PGAM
+### ENTERKEY
 
-A modern gaming-style enter-key interface with a distinctive layout optimized for fast interaction on mobile devices.
+Enter Key also offers `UIAL`, a familiar native iOS key-entry screen. Its preview image is named `UIKIT.PNG`.
 
-#### GLASS *(updated in 6.0.4)*
+<div align="center">
 
-Liquid Glass experience built on a full-screen ultra-thin blur. Enter Key, loading HUD, auto-alerts, Get UDID, and update/skip modals render **directly on the blurred app** — no opaque card chrome.
+| | | |
+| :---: | :---: | :---: |
+| **ANDROID**<br>![ANDROID Enter Key](APITheme/ENTERKEY/ANDROID.PNG) | **CST**<br>![CST Enter Key](APITheme/ENTERKEY/CST.PNG) | **GLASS**<br>![GLASS Enter Key](APITheme/ENTERKEY/GLASS.PNG) |
+| **HACKER**<br>![HACKER Enter Key](APITheme/ENTERKEY/HACKER.PNG) | **JG**<br>![JG Enter Key](APITheme/ENTERKEY/JG.PNG) | **LINUX**<br>![LINUX Enter Key](APITheme/ENTERKEY/LINUX.PNG) |
+| **MAC**<br>![MAC Enter Key](APITheme/ENTERKEY/MAC.PNG) | **MBP**<br>![MBP Enter Key](APITheme/ENTERKEY/MBP.PNG) | **MINECRAFT**<br>![MINECRAFT Enter Key](APITheme/ENTERKEY/MINECRAFT.PNG) |
+| **NEWYEAR2026**<br>![NEWYEAR2026 Enter Key](APITheme/ENTERKEY/NEWYEAR2026.PNG) | **PGAM**<br>![PGAM Enter Key](APITheme/ENTERKEY/PGAM.PNG) | **SCL**<br>![SCL Enter Key](APITheme/ENTERKEY/SCL.PNG) |
+| **XP**<br>![XP Enter Key](APITheme/ENTERKEY/XP.PNG) | **UIAL / UIKit**<br>![UIKit Enter Key](APITheme/ENTERKEY/UIKIT.PNG) | |
 
-| Element | Behavior |
-| ------- | -------- |
-| Enter Key | Transparent input field · purple gradient OK · Font Awesome action icons · countdown inline with moto (`moto - [seconds]`) |
-| Loading / Alert | Centered spinner or status icon · balanced text-to-countdown-bar spacing · Light/Dark adaptive typography |
-| Feedback | Haptic on interaction · no enter-key / UDID appearance sound |
+</div>
+
+### EXTENSION
+
+Extension covers Get UDID, update prompts, and skip confirmation. When no separate option is selected, it follows the Check Key theme.
+
+<div align="center">
+
+| | | |
+| :---: | :---: | :---: |
+| **ANDROID**<br>![ANDROID Extension](APITheme/EXTENSION/ANDROID.PNG) | **CST**<br>![CST Extension](APITheme/EXTENSION/CST.PNG) | **GLASS**<br>![GLASS Extension](APITheme/EXTENSION/GLASS.PNG) |
+| **HACKER**<br>![HACKER Extension](APITheme/EXTENSION/HACKER.PNG) | **JG**<br>![JG Extension](APITheme/EXTENSION/JG.PNG) | **LINUX**<br>![LINUX Extension](APITheme/EXTENSION/LINUX.PNG) |
+| **MAC**<br>![MAC Extension](APITheme/EXTENSION/MAC.PNG) | **MBP**<br>![MBP Extension](APITheme/EXTENSION/MBP.PNG) | **MINECRAFT**<br>![MINECRAFT Extension](APITheme/EXTENSION/MINECRAFT.PNG) |
+| **NEWYEAR2026**<br>![NEWYEAR2026 Extension](APITheme/EXTENSION/NEWYEAR2026.PNG) | **PGAM**<br>![PGAM Extension](APITheme/EXTENSION/PGAM.PNG) | **SCL**<br>![SCL Extension](APITheme/EXTENSION/SCL.PNG) |
+| **XP**<br>![XP Extension](APITheme/EXTENSION/XP.PNG) | | |
+
+</div>
 
 ---
 
@@ -992,6 +1070,20 @@ Copyright © 2024–2026 Phat Pham (@pdp7803). All rights reserved.
 ## <a name="changelog"></a>Changelog
 
 <details open>
+<summary><strong>v6.1.0</strong> — Complete themes & Custom builds</summary>
+
+**Builds:** `PPAPIKey 6.1.0B` · `PPAPIKey 6.1.0F` · `PPAPIKey 6.1.0BC` · `PPAPIKey 6.1.0FC`
+
+| Area | Changes |
+| ---- | ------- |
+| **Themes** | Completed Check Key, Enter Key, and Extension groups across 13 styles; Enter Key also includes UIKit (`UIAL`) |
+| **Interface** | Refreshed layouts, backgrounds, card corners, Dark Mode colors, and support for different screen sizes |
+| **Distribution** | Added Custom Basic (`BC`) and Custom Full (`FC`) alongside standard Basic (`B`) and Full (`F`) |
+| **Stability** | Improved transitions between loading, Get UDID, key entry, update prompts, and result messages |
+
+</details>
+
+<details>
 <summary><strong>v6.0.5</strong> — UI Bug Fixes</summary>
 
 **Build:** `PPAPIKey 6.0.5B` · `PPAPIKey 6.0.5F`
